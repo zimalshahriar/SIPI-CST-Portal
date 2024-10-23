@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2024 at 12:51 PM
+-- Generation Time: Oct 23, 2024 at 04:11 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -120,6 +120,13 @@ CREATE TABLE `semesters` (
   `semester_name` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `semesters`
+--
+
+INSERT INTO `semesters` (`id`, `semester_name`) VALUES
+(1, '8th');
+
 -- --------------------------------------------------------
 
 --
@@ -140,6 +147,13 @@ CREATE TABLE `students` (
   `board_roll` int(11) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`id`, `name`, `email`, `password`, `semester_id`, `department`, `phone_number`, `guardian_phone_number`, `address`, `class_roll`, `board_roll`, `image`) VALUES
+(1, 'demo student', 'demostudent@gmail.com', '$2y$10$nfB70OBSEGA2dGacmUTwp.BshP39o01Emo11bo/YVsi.tde2s1fnO', 1, 'cse', '01866130215', '01588877887', 'dhaka', 2, 557203, NULL);
 
 -- --------------------------------------------------------
 
@@ -167,6 +181,13 @@ CREATE TABLE `teachers` (
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `teachers`
+--
+
+INSERT INTO `teachers` (`id`, `name`, `role`, `email`, `password`) VALUES
+(1, 'demo teacher', 'Chief Instructor', 'demoteacher@gmail.com', '$2y$10$huuuAiAfb6lg.8R/.DIUhOSTr5aEfOlfvX9cudYnPFVFs8m0qIt1y');
 
 --
 -- Indexes for dumped tables
@@ -288,13 +309,13 @@ ALTER TABLE `routines`
 -- AUTO_INCREMENT for table `semesters`
 --
 ALTER TABLE `semesters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `subjects`
@@ -306,7 +327,7 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

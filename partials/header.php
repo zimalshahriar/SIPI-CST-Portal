@@ -18,7 +18,7 @@ function isTeacher() {
 
 
 if (!isLoggedIn()) {
-    header("Location: login.php"); 
+    header("Location: ./partials/login.php"); 
     exit;
 }
 ?>

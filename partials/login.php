@@ -6,29 +6,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
     
-    $sql = "SELECT u.*, r.role_name FROM users u 
-            JOIN roles r ON u.role_id = r.id 
-            WHERE u.email = ?";
-    
-    if ($stmt = $conn->prepare($sql)) {
+    // Check if user is a teacher
+    $sql_teacher = "SELECT * FROM teachers WHERE email = ?";
+    if ($stmt = $conn->prepare($sql_teacher)) {
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
         
         if ($result->num_rows == 1) {
-            $user = $result->fetch_assoc();
-            if (password_verify($password, $user['password'])) {
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['role'] = $user['role_name'];
-                header("Location: dashboard.php");
+            $teacher = $result->fetch_assoc();
+            if (password_verify($password, $teacher['password'])) {
+                $_SESSION['user_id'] = $teacher['id'];
+                $_SESSION['user_type'] = 'teacher';
+                header("Location: ../dashboard/index.php");
                 exit;
             }
         }
-        $_SESSION['error'] = "Invalid email or password";
         $stmt->close();
     }
+
+    // Check if user is a student
+    $sql_student = "SELECT * FROM students WHERE email = ?";
+    if ($stmt = $conn->prepare($sql_student)) {
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows == 1) {
+            $student = $result->fetch_assoc();
+            if (password_verify($password, $student['password'])) {
+                $_SESSION['user_id'] = $student['id'];
+                $_SESSION['user_type'] = 'student';
+                header("Location: ../dashboard/index.php");
+                exit;
+            }
+        }
+        $stmt->close();
+    }
+
+    $_SESSION['error'] = "Invalid email or password";
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
