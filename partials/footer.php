@@ -32,7 +32,7 @@
                     <i class="bi bi-instagram"></i>
                 </a>
                 <a href="#" class="text-white me-2">
-                    <i class="bi bi-linkedin"></i>
+                    <i class="bi bi-linkedin"></i> 
                 </a>
                 <p class="mt-3">© 2024 SIPI. All Rights Reserved.</p>
             </div>
