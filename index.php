@@ -15,28 +15,49 @@ if (isset($_SESSION['user_type'])) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to SIPI CST Portal</title>
-    <!-- Add Bootstrap CSS for styling -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <title>SIPI CST Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+        }
+        .login-section {
+            animation: fadeInLeft 1s ease;
+        }
+        .image-section img {
+            width: 100%;
+            max-width: 550px;
+            border-radius: 5px;
+            animation: fadeInRight 1s ease;
+        }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
 </head>
 <body>
     <div class="container text-center mt-5">
-        <h1>Welcome to SIPI CST Portal</h1>
-        <p class="lead">Shyamoli Ideal Polytechnic Institute - Computer Science and Technology Department</p>
+        <h1>WELCOME TO SIPI CST PORTAL</h1>
+        <h2 class="lead ">Shyamoli Ideal Polytechnic Institute - Computer Science and Technology Department</h2>
         
-        <!-- Login Section -->
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card shadow-lg">
+        <div class="row mt-5 align-items-center">
+            <!-- Login Section -->
+            <div class="col-md-6 login-section">
+                <div class="card shadow-lg bg-light text-dark">
                     <div class="card-body">
-                        <h2 class="card-title">Login</h2>
+                        <h2 class="card-title mb-4">Login</h2>
                         <form action="login.php" method="post">
                             <div class="mb-3">
                                 <label for="user_id" class="form-label">User ID</label>
@@ -46,10 +67,15 @@ if (isset($_SESSION['user_type'])) {
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Login</button>
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
                         </form>
                     </div>
                 </div>
+            </div>
+
+            <!-- Right Side Image Section -->
+            <div class="col-md-6 image-section d-flex justify-content-center">
+                <img src="image/22344038_Team of programmers working on program code with laptops.jpg" alt="CST Department Image" class="shadow-lg">
             </div>
         </div>
 
@@ -59,7 +85,7 @@ if (isset($_SESSION['user_type'])) {
         </footer>
     </div>
 
-    <!-- Add Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
