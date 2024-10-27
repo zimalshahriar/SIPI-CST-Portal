@@ -16,7 +16,7 @@
                 <h5>Shyamoli Ideal Polytechnic Institute</h5>
                 <p>123 Main Street, Dhaka, Bangladesh</p>
                 <p>Email: info@sipi.edu.bd</p>
-                <p>Phone: +880123456789</p>
+                <p>Phone: +880123456999</p>
             </div>
 
             <!-- Right Section: Social Media / Copyright -->
