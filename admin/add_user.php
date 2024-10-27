@@ -8,13 +8,22 @@ if ($_SESSION['user_type'] !== 'admin') {
     exit;
 }
 
-// Fetch existing sessions from the database
+// Fetch existing sessions from the sessions table
 $sessions = [];
 $query = $conn->prepare("SELECT session FROM sessions");
 $query->execute();
 $result = $query->get_result();
 while ($row = $result->fetch_assoc()) {
     $sessions[] = $row['session'];
+}
+
+// Fetch distinct semesters from the user table
+$semesters = [];
+$semester_query = $conn->prepare("SELECT DISTINCT semester FROM users WHERE semester IS NOT NULL");
+$semester_query->execute();
+$semester_result = $semester_query->get_result();
+while ($row = $semester_result->fetch_assoc()) {
+    $semesters[] = $row['semester'];
 }
 ?>
 
@@ -69,13 +78,23 @@ while ($row = $result->fetch_assoc()) {
                     <select class="form-select" id="session" name="session" required>
                         <option value="" selected disabled>Select session</option>
                         <?php foreach ($sessions as $session): ?>
-                            <option value="<?php echo $session; ?>"><?php echo $session; ?></option>
+                            <option value="<?php echo htmlspecialchars($session); ?>">
+                                <?php echo htmlspecialchars($session); ?>
+                            </option>
                         <?php endforeach; ?>
                     </select>
                 </div>
+
                 <div class="mb-3">
-                    <label for="semester" class="form-label">Semester</label>
-                    <input type="number" class="form-control" id="semester" name="semester" min="1" max="8" placeholder="Enter semester" required>
+                    <label for="semester" class="form-label">Select Semester</label>
+                    <select class="form-select" id="semester" name="semester" required>
+                        <option value="" selected disabled>Select semester</option>
+                        <?php foreach ($semesters as $semester): ?>
+                            <option value="<?php echo htmlspecialchars($semester); ?>">
+                                <?php echo htmlspecialchars($semester); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
             </div>
 
@@ -103,7 +122,14 @@ while ($row = $result->fetch_assoc()) {
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="../js/script.js"></script>
+    <script>
+        // Show/Hide fields based on the user type selection
+        document.getElementById('user_type').addEventListener('change', function() {
+            const userType = this.value;
+            document.getElementById('student-fields').style.display = userType === 'student' ? 'block' : 'none';
+            document.getElementById('teacher-fields').style.display = userType === 'teacher' ? 'block' : 'none';
+        });
+    </script>
 </body>
 
 </html>
