@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $session = $_POST['session'];
         $semester = $_POST['semester'];
         $stmt = $conn->prepare("UPDATE users SET name = ?, email = ?, session = ?, semester = ? WHERE id = ?");
-        $stmt->bind_param('sssii', $name, $email, $session, $semester, $user_id);
+        $stmt->bind_param('ssssi', $name, $email, $session, $semester, $user_id);
     
     // Update teacher-specific fields
     } elseif ($user_type === 'teacher') {

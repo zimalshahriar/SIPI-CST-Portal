@@ -89,7 +89,9 @@ while ($row = $semester_result->fetch_assoc()) {
                     <label for="semester" class="form-label">Select Semester</label>
                     <select class="form-select" id="semester" name="semester" required>
                         <option value="" selected disabled>Select semester</option>
-                        <?php foreach ($semesters as $semester): ?>
+                        <?php 
+                        $semesters = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'];
+                        foreach ($semesters as $semester): ?>
                             <option value="<?php echo htmlspecialchars($semester); ?>">
                                 <?php echo htmlspecialchars($semester); ?>
                             </option>
