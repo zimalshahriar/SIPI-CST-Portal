@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2024 at 09:18 AM
+-- Generation Time: Oct 28, 2024 at 12:13 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,12 +30,19 @@ SET time_zone = "+00:00";
 CREATE TABLE `class_schedule` (
   `id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
-  `teacher_id` int(11) NOT NULL,
-  `day` enum('Saturday','Sunday','Monday','Tuesday','Wednesday','Thursday') NOT NULL,
+  `day` enum('Saturday','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday') NOT NULL,
   `start_time` time NOT NULL,
   `end_time` time NOT NULL,
+  `teacher_name` varchar(255) NOT NULL,
   `semester` enum('1st','2nd','3rd','4th','5th','6th','7th','8th') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `class_schedule`
+--
+
+INSERT INTO `class_schedule` (`id`, `subject_id`, `day`, `start_time`, `end_time`, `teacher_name`, `semester`) VALUES
+(3, 1, 'Monday', '06:10:00', '07:10:00', 'Sourov Sarker', '7th');
 
 -- --------------------------------------------------------
 
@@ -140,8 +147,7 @@ INSERT INTO `users` (`id`, `user_id`, `name`, `email`, `password`, `user_type`, 
 --
 ALTER TABLE `class_schedule`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `subject_id` (`subject_id`),
-  ADD KEY `teacher_id` (`teacher_id`);
+  ADD KEY `subject_id` (`subject_id`);
 
 --
 -- Indexes for table `notices`
@@ -176,7 +182,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `class_schedule`
 --
 ALTER TABLE `class_schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `notices`
@@ -210,8 +216,7 @@ ALTER TABLE `users`
 -- Constraints for table `class_schedule`
 --
 ALTER TABLE `class_schedule`
-  ADD CONSTRAINT `class_schedule_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `class_schedule_ibfk_2` FOREIGN KEY (`teacher_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `class_schedule_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
