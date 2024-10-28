@@ -8,7 +8,7 @@ if ($_SESSION['user_type'] !== 'teacher') {
     exit;
 }
 
-// Check if the ID is set
+// Check if the ID is provided
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
@@ -17,18 +17,13 @@ if (isset($_GET['id'])) {
     $stmt->bind_param('i', $id);
 
     if ($stmt->execute()) {
-        // Success, redirect back to the management page
-        header('Location: class_schedule_management.php');
-        exit;
+        header('Location: class_schedule_management.php?message=Schedule deleted successfully.');
     } else {
-        // Handle error
-        echo "Error deleting schedule: " . $stmt->error;
+        header('Location: class_schedule_management.php?message=Error deleting schedule: ' . $stmt->error);
     }
 
     $stmt->close();
 } else {
-    // If no ID is set, redirect back to the management page
-    header('Location: class_schedule_management.php');
-    exit;
+    header('Location: class_schedule_management.php?message=No schedule ID provided.');
 }
 ?>

@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         // Success, redirect back to the management page
-        header('Location: class_schedule_management.php');
+        header('Location: class_schedule_management.php?message=Schedule updated successfully.');
         exit;
     } else {
         // Handle error
@@ -32,4 +32,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $stmt->close();
 }
+
+// Fetch the current class schedule record based on ID
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $schedule_result = $conn->query("SELECT * FROM class_schedule WHERE id = $id");
+    $current_schedule = $schedule_result->fetch_assoc();
+} else {
+    header('Location: class_schedule_management.php?error=No schedule found.');
+    exit;
+}
+
+// Fetch existing subjects for the dropdown
+$subjects = $conn->query("SELECT * FROM subjects");
 ?>
