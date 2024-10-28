@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2024 at 05:07 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Oct 28, 2024 at 09:18 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,22 @@ SET time_zone = "+00:00";
 --
 -- Database: `sipi_cst_portal`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `class_schedule`
+--
+
+CREATE TABLE `class_schedule` (
+  `id` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  `teacher_id` int(11) NOT NULL,
+  `day` enum('Saturday','Sunday','Monday','Tuesday','Wednesday','Thursday') NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL,
+  `semester` enum('1st','2nd','3rd','4th','5th','6th','7th','8th') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -41,7 +57,8 @@ CREATE TABLE `notices` (
 
 INSERT INTO `notices` (`id`, `title`, `content`, `created_at`, `semester`) VALUES
 (28, '3rd', 'for 3rd', '2024-10-27 11:41:11', '8th'),
-(29, 'all', 'all semester', '2024-10-27 16:05:20', 'All Semester');
+(29, 'all', 'all semester', '2024-10-27 16:05:20', 'All Semester'),
+(30, 'Lagabo', 'Sob CST student ra mile Sourav er bou ke lagabo', '2024-10-28 06:11:49', 'All Semester');
 
 -- --------------------------------------------------------
 
@@ -60,6 +77,26 @@ CREATE TABLE `sessions` (
 
 INSERT INTO `sessions` (`id`, `session`) VALUES
 (1, '2021-22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subjects`
+--
+
+CREATE TABLE `subjects` (
+  `id` int(11) NOT NULL,
+  `subject_name` varchar(255) NOT NULL,
+  `subject_code` varchar(10) NOT NULL,
+  `semester` enum('1st','2nd','3rd','4th','5th','6th','7th','8th') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `subjects`
+--
+
+INSERT INTO `subjects` (`id`, `subject_name`, `subject_code`, `semester`) VALUES
+(1, 'Cyber Security & Ethics', '66675', '7th');
 
 -- --------------------------------------------------------
 
@@ -91,11 +128,20 @@ INSERT INTO `users` (`id`, `user_id`, `name`, `email`, `password`, `user_type`, 
 (7, 'JI-demo', 'Demo Teacher', 'demoteacher@email.com', '$2y$10$KvoISmjefm6XL7QFmZ4xcuOV0325APfl5qDhcwAjugy1sW/qR3y2S', 'teacher', NULL, NULL, 'Instructor', 'pngtree-teachers-day-characters-png-image_9143439.png', '2024-10-25 09:13:25'),
 (8, 'sourov', 'Sourov Kumar', 'sourovkuamr@gmail.com', '$2y$10$61fcDzCuenqPOfWcK/023e7Qs0GuWJEi4ns.F4xUg.ODVt2xE3ezK', 'admin', NULL, NULL, NULL, 'logo.jpg', '2024-10-25 19:49:13'),
 (9, 'teacher-1', 'Sourov Sarker', 'sourovsarker-21ia@dipti.com.bd', '$2y$10$luGze56bhGnYoV3r6fCuFuFuwv266POsBsbAQm.If.B7b0wghqqcW', 'teacher', NULL, NULL, 'CI', '', '2024-10-27 05:17:33'),
-(10, 'student-1', 'Sourov Sarker', 'sourovsarker-21ia@dipti.com.bd', '$2y$10$KulKopoP5l60K392GELmZu45wZnXTXLMsYkL/JArGCkMkd31UpkAC', 'student', '2021-22', '8th', NULL, '', '2024-10-27 06:28:37');
+(10, 'student-1', 'Sourov Sarker', 'sourovsarker-21ia@dipti.com.bd', '$2y$10$KulKopoP5l60K392GELmZu45wZnXTXLMsYkL/JArGCkMkd31UpkAC', 'student', '2021-22', '8th', NULL, '', '2024-10-27 06:28:37'),
+(11, 'nauijdi', 'daw', 'ajhnd@djkd.cc', '$2y$10$bJ1NewAVxrZ/w68DJc1uBuRtRl2Og5J16sbnNNWBehheWuQ.jmRMa', 'student', '2021-22', '7th', NULL, '', '2024-10-28 05:30:41');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `class_schedule`
+--
+ALTER TABLE `class_schedule`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `subject_id` (`subject_id`),
+  ADD KEY `teacher_id` (`teacher_id`);
 
 --
 -- Indexes for table `notices`
@@ -111,6 +157,12 @@ ALTER TABLE `sessions`
   ADD UNIQUE KEY `session` (`session`);
 
 --
+-- Indexes for table `subjects`
+--
+ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -121,10 +173,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `class_schedule`
+--
+ALTER TABLE `class_schedule`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `notices`
 --
 ALTER TABLE `notices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `sessions`
@@ -133,10 +191,27 @@ ALTER TABLE `sessions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `subjects`
+--
+ALTER TABLE `subjects`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `class_schedule`
+--
+ALTER TABLE `class_schedule`
+  ADD CONSTRAINT `class_schedule_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `class_schedule_ibfk_2` FOREIGN KEY (`teacher_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
