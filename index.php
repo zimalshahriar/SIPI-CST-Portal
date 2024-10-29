@@ -64,215 +64,273 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <title>Login Page</title>
-    <style>
-        * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+ <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 body {
-  background-color: #c9d6ff;
-  background: linear-gradient(to right, #e2e2e2, #c9d6ff);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 100vh;
+    background-color: #c9d6ff;
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 10px;
 }
 
 .container {
-  background-color: #fff;
-  border-radius: 150px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-  position: relative;
-  overflow: hidden;
-  width: 768px;
-  max-width: 100%;
-  min-height: 480px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    width: 100%;
+    max-width: 768px;
+    min-height: 480px;
+    position: relative;
 }
 
 .container p {
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.3px;
-  margin: 20px 0;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
 }
 
-
 .container span {
-  font-size: 12px;
+    font-size: 12px;
 }
 
 .container a {
-  color: #333;
-  font-size: 13px;
-  text-decoration: none;
-  margin: 15px 0 10px;
+    color: #333;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
 }
+
 .container button {
-  background-color: #a82d2d;
-  color: #fff;
-  padding: 10px 45px;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-top: 10px;
-  cursor: pointer;
+    background-color: #a82d2d;
+    color: #fff;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
 }
 
 .container button.hidden {
-  background-color: transparent;
-  border-color: #fff;
+    background-color: transparent;
+    border-color: #fff;
 }
 
 .container form {
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0 40px;
-  height: 100%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 20px;
+    height: 100%;
 }
 
 .container input {
-  background-color: #eee;
-  border: none;
-  margin: 8px 0;
-  padding: 10px 15px;
-  font-size: 13px;
-  border-radius: 8px;
-  width: 100%;
-  outline: none;
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
 }
 
 .sign-up, .sign-in {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  transition: all 0.6s ease-in-out;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
 }
 
 .sign-in {
-  left: 0;
-  width: 50%;
-  z-index: 2;
+    left: 0;
+    width: 50%;
+    z-index: 2;
 }
 
 .container.active .sign-in {
-  transform: translateX(100%);
+    transform: translateX(100%);
 }
 
 .sign-up {
-  left: 0;
-  width: 50%;
-  z-index: 1;
-  opacity: 0;
+    left: 0;
+    width: 50%;
+    z-index: 1;
+    opacity: 0;
 }
 
 .container.active .sign-up {
-  transform: translateX(100%);
-  opacity: 1;
-  z-index: 5;
-  animation: move 0.6s;
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
 }
 
 @keyframes move {
-  0%, 49.99%{
-    opacity: 0;
-    z-index: 1;
-  }
-   50%, 100%{
-    opacity: 1;
-    z-index: 5;
-  }
+    0%, 49.99% {
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100% {
+        opacity: 1;
+        z-index: 5;
+    }
 }
 
 .icons {
-  margin: 20px 0;
+    margin: 20px 0;
 }
 
 .icons a {
-  border: 1px solid #ccc;
-  border-radius: 20%;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 3px;
-  width: 40px;
-  height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 20%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+    width: 40px;
+    height: 40px;
 }
 
 .toogle-container {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
-  border-radius: 150px;
-  z-index: 1000;
-  transition: all 0.6s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 150px;
+    z-index: 1000;
+    transition: all 0.6s ease-in-out;
 }
 
 .container.active .toogle-container {
-  transform: translateX(-100%);
-  border-radius: 150px;
+    transform: translateX(-100%);
+    border-radius: 150px;
 }
 
 .toogle {
-  background-color: #a82d2d;
-  height: 100%;
-  background: linear-gradient(to right,  #a82d2d, #a82d2d);
-  color: #fff;
-  position: relative;
-  left: -100%;
-  width: 200%;
-  transform: translateX(0);
-  transition: all 0.6s ease-in-out;
+    background-color: #a82d2d;
+    height: 100%;
+    background: linear-gradient(to right, #a82d2d, #a82d2d);
+    color: #fff;
+    position: relative;
+    left: -100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
 }
 
 .container.active .toogle {
-  transform: translateX(50%);
+    transform: translateX(50%);
 }
 
 .toogle-panel {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 0 30px;
-  text-align: center;
-  top: 0;
-  transform: translateX(0);
-  transition: all 0.6s ease-in-out;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
 }
 
 .toogle-left {
-  transform: translateX(-200%);
+    transform: translateX(-200%);
 }
 
 .container.active .toogle-left {
-  transform: translateX(0);
+    transform: translateX(0);
 }
 
 .toogle-right {
-  right: 0;
-  transform: translateX(0);
+    right: 0;
+    transform: translateX(0);
 }
 
 .container.active .toogle-right {
-  transform: translateX(200%);
+    transform: translateX(200%);
 }
 
-    </style>
+/* Responsive Styles for Tablets and Small Screens */
+@media (max-width: 100px) {
+    .container {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .toogle-container, .toogle-panel {
+        display: none;
+    }
+
+    .container form {
+        padding: 20px;
+    }
+}
+
+/* Extra Small Screens (Mobile) */
+@media (max-width: 480px) {
+    .container input, .container button {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .container p {
+        font-size: 12px;
+    }
+
+    .icons a {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* Large Screens */
+@media (min-width: 4000px) {
+    .container {
+        width: 800px;
+        max-width: 80%;
+        margin: auto;
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .toogle-container, .toogle-panel {
+        display: flex;
+    }
+
+    .toogle {
+        border-radius: 20px;
+    }
+
+    .container p {
+        font-size: 16px;
+    }
+}
+
+ </style>
 </head>
 <body>
     <div class="container" id="container">
@@ -302,9 +360,10 @@ body {
                     <button class="hidden" id="login">Login</button>
                 </div>
                 <div class="toogle-panel toogle-right">
-                    <h1>Welcome To SIPI CST Portal!</h1>
+                    <h2 style="margin-top: 100px;">Welcome To SIPI CST Portal!</h2>
                     <p>Shyamoli Ideal Polytechnic Institute - Computer Science and Technology Department.</p>
-                    <button class="hidden" id="register">Login</button>
+                    <!-- <button class="hidden" id="register">Login</button> -->
+                     <img style="width: 250px;"  src="image/sipi logo.png" alt="">
                 </div>
             </div>
         </div>
