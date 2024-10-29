@@ -1,6 +1,9 @@
 <?php
-session_start();
+require_once './partials/header.php';
 include '../db/database.php';
+require_once './partials/navbar.php';
+require_once './partials/sidebar.php';
+
 
 // Ensure only teachers can access this page
 if ($_SESSION['user_type'] !== 'teacher') {
@@ -52,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <style>
         body {
-            background-color: #f4f6f9;
+            background-color: linear-gradient(to right, #be95be 0%, #be95be 100%);
             font-family: 'Poppins', sans-serif;
         }
 
@@ -65,8 +68,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .container {
-            max-width: 700px;
-            margin-top: 50px;
+            max-width: 1100px;
+            margin-top: 10px;
         }
 
         .form-control, .form-select {
@@ -83,17 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             box-shadow: none;
         }
 
-        button {
-            background-color: #3498db;
-            border: none;
-            border-radius: 8px;
-            padding: 10px 20px;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #2980b9;
-        }
 
         .card {
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -139,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Post Notice</button>
+                <button type="submit" class="btn btn-block btn-lg btn-gradient-primary mt-4">Post Notice</button>
             </form>
         </div>
     </div>
@@ -176,6 +168,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endif; ?>
         <?php endif; ?>
     </script>
+
 </body>
 
 </html>
+
+<?php require_once './partials/footer.php' ?>

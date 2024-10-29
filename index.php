@@ -376,4 +376,8 @@ body {
         });
     </script>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> e78588112f91cfb763788c20508456f3bf48a8de
