@@ -1,6 +1,9 @@
 <?php
-session_start();
+require_once './partials/header.php';
+ob_start(); // Start output buffering
 include '../db/database.php';
+require_once './partials/navbar.php';
+require_once './partials/sidebar.php';
 
 // Check if the user is a teacher
 if ($_SESSION['user_type'] !== 'teacher') {
@@ -24,8 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param('isssss', $subject_id, $day, $start_time, $end_time, $teacher_name, $semester);
     $stmt->execute();
     $stmt->close();
-    header('Location: class_schedule_management.php');
+    // header('Location: class_schedule_management.php');
 }
+ob_end_flush(); // End output buffering and flush output
+
 ?>
 
 <!DOCTYPE html>
@@ -99,3 +104,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<?php require_once './partials/footer.php'; ?>

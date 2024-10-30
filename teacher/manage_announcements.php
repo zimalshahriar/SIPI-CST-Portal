@@ -1,8 +1,9 @@
 <?php
-session_start();
-require_once '../db/database.php'; // Ensure you have the correct path to your database connection file
-
-// Handle Update
+require_once './partials/header.php';
+ob_start(); // Start output buffering
+include '../db/database.php';
+require_once './partials/navbar.php';
+require_once './partials/sidebar.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
     $id = $_POST['id'];
     $title = trim($_POST['title']);
@@ -65,7 +66,7 @@ if ($semester_result->num_rows > 0) {
         $semesters[] = $row['semester'];
     }
 } else {
-    $_SESSION['message'] = "No semesters found!";
+
 }
 ?>
 
@@ -192,3 +193,7 @@ if ($semester_result->num_rows > 0) {
     </script>
 </body>
 </html>
+<?php ob_end_flush(); // Flush the output from the buffer
+?>
+
+<?php require_once './partials/footer.php'; ?>

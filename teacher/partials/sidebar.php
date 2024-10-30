@@ -1,5 +1,5 @@
 <?php
-// session_start();
+// include './partials/header.php';
 
 ?>
 
@@ -61,7 +61,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pages/settings.php">
+        <a class="nav-link" href="settings.php">
     <span class="menu-title">Settings</span>
     <i class="mdi mdi-chart-bar menu-icon"></i>
         </a>

@@ -14107,7 +14107,7 @@ dl {
 /* Sidebar */
 .sidebar {
   min-height: calc(100vh - 70px);
-  background: #ffffff;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef); /* Soft gradient for sidebar background */
   font-family: "ubuntu-regular", sans-serif;
   padding: 0;
   width: 260px;
@@ -14440,7 +14440,7 @@ dl {
       width: 100%; } }
 
 .content-wrapper {
-  background: #f2edf3;
+  background: #c58aff;
   padding: 2.75rem 2.25rem;
   width: 100%;
   -webkit-box-flex: 1;

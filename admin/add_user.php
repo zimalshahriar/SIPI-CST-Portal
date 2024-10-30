@@ -130,6 +130,8 @@ while ($row = $semester_result->fetch_assoc()) {
             const userType = this.value;
             document.getElementById('student-fields').style.display = userType === 'student' ? 'block' : 'none';
             document.getElementById('teacher-fields').style.display = userType === 'teacher' ? 'block' : 'none';
+            // Set required attribute based on user type
+            document.getElementById('role').required = userType === 'teacher';
         });
     </script>
 </body>
