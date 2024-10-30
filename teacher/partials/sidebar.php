@@ -1,6 +1,10 @@
 <?php
 // include './partials/header.php';
-
+// Authentication Check For Teachers
+if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'teacher') {
+  header("Location: ../login.php"); // Redirect if not a teacher
+  exit;
+}
 ?>
 
 <!-- partial -->
@@ -37,7 +41,7 @@
         <div class="collapse" id="ui-basic">
     <ul class="nav flex-column sub-menu">
       <li class="nav-item"> <a class="nav-link" href="announcements.php">Add Announcements</a></li>
-      <li class="nav-item"> <a class="nav-link" href="manage_announcements.php">Manaage Announcements</a></li>
+      <li class="nav-item"> <a class="nav-link" href="manage_announcements.php">Manage Announcements</a></li>
     </ul>
         </div>
       </li>
