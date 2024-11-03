@@ -105,7 +105,7 @@ body {
 
 .container {
     background-color: #fff;
-    border-radius: 15px;
+    border-radius: 150px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     overflow: hidden;
     width: 100%;
@@ -293,60 +293,25 @@ body {
     transform: translateX(200%);
 }
 
-/* Responsive Styles for Tablets and Small Screens */
-@media (max-width: 100px) {
+/* Tablets */
+@media (max-width: 768px) {
     .container {
-        width: 100%;
+        width: 90%;
+        padding: 20px;
         border-radius: 10px;
     }
-
-    .toogle-container, .toogle-panel {
-        display: none;
-    }
-
-    .container form {
-        padding: 20px;
-    }
 }
 
-/* Extra Small Screens (Mobile) */
+/* Small screens (mobile) */
 @media (max-width: 480px) {
-    .container input, .container button {
+    .container {
         width: 100%;
         padding: 10px;
-        font-size: 14px;
+        border-radius: 8px;
     }
-
-    .container p {
-        font-size: 12px;
-    }
-
     .icons a {
-        width: 35px;
-        height: 35px;
-    }
-}
-
-/* Large Screens */
-@media (min-width: 4000px) {
-    .container {
-        width: 800px;
-        max-width: 80%;
-        margin: auto;
-        padding: 20px;
-        border-radius: 20px;
-    }
-
-    .toogle-container, .toogle-panel {
-        display: flex;
-    }
-
-    .toogle {
-        border-radius: 20px;
-    }
-
-    .container p {
-        font-size: 16px;
+        width: 30px;
+        height: 30px;
     }
 }
 
@@ -380,10 +345,10 @@ body {
                     <button class="hidden" id="login">Login</button>
                 </div>
                 <div class="toogle-panel toogle-right">
-                    <h2 style="margin-top: 100px;">Welcome To SIPI CST Portal!</h2>
-                    <p>Shyamoli Ideal Polytechnic Institute - Computer Science and Technology Department.</p>
+                <img style="width: 250px;"  src="image/sipi logo.png" alt="">
+                    <h2>Welcome To SIPI CST Portal!</h2>
+                    <p style="margin-bottom: 80px;">Shyamoli Ideal Polytechnic Institute - Computer Science and Technology Department.</p>
                     <!-- <button class="hidden" id="register">Login</button> -->
-                     <img style="width: 250px;"  src="image/sipi logo.png" alt="">
                 </div>
             </div>
         </div>

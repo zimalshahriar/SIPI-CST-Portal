@@ -39,8 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,66 +46,79 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    
-    <!-- Toastr CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <style>
         body {
-            background-color: linear-gradient(to right, #be95be 0%, #be95be 100%);
+            background: #f4f7fc;
             font-family: 'Poppins', sans-serif;
-        }
-
-        h2 {
-            color: #2980b9;
-            font-weight: 600;
-            margin-bottom: 40px;
-            text-align: center;
-            animation: fadeIn 1.5s;
+            color: #333;
         }
 
         .container {
-            max-width: 1100px;
-            margin-top: 10px;
+            max-width: 800px;
+            margin-top: 5%;
+        }
+
+        .card {
+            border: none;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px 30px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #555;
         }
 
         .form-control, .form-select {
-            background-color: #ecf0f1;
-            border: none;
+            background-color: #f7f9fc;
+            border: 1px solid #d1d9e0;
             border-radius: 8px;
-            margin-bottom: 15px;
-            transition: background-color 0.3s;
+            margin-bottom: 20px;
+            padding: 12px 15px;
+            font-size: 1rem;
+            color: #333;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
 
         .form-control:focus, .form-select:focus {
-            background-color: #e0e7ec;
+            border-color: #1abc9c;
+            box-shadow: 0 0 8px rgba(26, 188, 156, 0.2);
             outline: none;
-            box-shadow: none;
         }
 
-
-        .card {
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            border-radius: 12px;
-            background: linear-gradient(145deg, #ffffff, #ecf0f1);
+        .btn-gradient-primary {
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+            color: #ffffff;
+            font-weight: 600;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+            display: block;
+            width: 100%;
+            font-size: 1.1rem;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .btn-gradient-primary:hover {
+            background: linear-gradient(135deg, #16a085, #1abc9c);
+        }
+
+        .btn-gradient-primary:focus {
+            box-shadow: 0 0 8px rgba(26, 188, 156, 0.4);
         }
     </style>
 </head>
-
-<body>
     <div class="container">
         <div class="card">
             <h2>📢 Post New Notice</h2>
@@ -131,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-block btn-lg btn-gradient-primary mt-4">Post Notice</button>
+                <button type="submit" class="btn btn-gradient-primary mt-4">Post Notice</button>
             </form>
         </div>
     </div>

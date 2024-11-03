@@ -77,10 +77,73 @@ if ($semester_result->num_rows > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Notices</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .table {
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .table thead {
+            background-color: #1abc9c;
+            color: #ffffff;
+        }
+
+        .table thead th {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .table tbody tr {
+            text-align: center;
+        }
+
+        .btn-warning, .btn-danger {
+            font-size: 0.9rem;
+        }
+
+        /* Edit Modal */
+        .modal-content {
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .modal-header, .modal-footer {
+            border: none;
+        }
+
+        .modal-header .modal-title {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .btn-primary, .btn-secondary {
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h2>Manage Notices</h2>
+    <div class="container">
+        <h2>📢 Manage Notices</h2>
 
         <?php if (isset($_SESSION['message'])): ?>
             <script>
@@ -102,12 +165,11 @@ if ($semester_result->num_rows > 0) {
                 <?php if ($result->num_rows > 0): ?>
                     <?php while ($notice = $result->fetch_assoc()): ?>
                         <tr>
-                            <td><?php echo $notice['id']; ?></td>
                             <td><?php echo htmlspecialchars($notice['title']); ?></td>
                             <td><?php echo nl2br(htmlspecialchars($notice['content'])); ?></td>
                             <td><?php echo htmlspecialchars($notice['semester']); ?></td>
                             <td>
-                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" 
+                                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" 
                                     data-id="<?php echo $notice['id']; ?>" 
                                     data-title="<?php echo htmlspecialchars($notice['title']); ?>" 
                                     data-content="<?php echo htmlspecialchars($notice['content']); ?>" 
@@ -118,7 +180,7 @@ if ($semester_result->num_rows > 0) {
                     <?php endwhile; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="5" class="text-center">No notices available</td>
+                        <td colspan="4" class="text-center">No notices available</td>
                     </tr>
                 <?php endif; ?>
             </tbody>
@@ -171,29 +233,22 @@ if ($semester_result->num_rows > 0) {
         // Handle modal data
         var editModal = document.getElementById('editModal');
         editModal.addEventListener('show.bs.modal', function (event) {
-            var button = event.relatedTarget; // Button that triggered the modal
+            var button = event.relatedTarget;
             var id = button.getAttribute('data-id');
             var title = button.getAttribute('data-title');
             var content = button.getAttribute('data-content');
             var semester = button.getAttribute('data-semester');
 
-            // Update the modal's content
-            var modalTitle = editModal.querySelector('.modal-title');
             var modalBodyInputTitle = editModal.querySelector('#title');
             var modalBodyInputContent = editModal.querySelector('#content');
             var modalBodyInputSemester = editModal.querySelector('#semester');
             var modalBodyInputId = editModal.querySelector('#noticeId');
 
-            modalTitle.textContent = 'Edit Notice';
             modalBodyInputTitle.value = title;
             modalBodyInputContent.value = content;
-            modalBodyInputSemester.value = semester; // Set the current semester value
+            modalBodyInputSemester.value = semester;
             modalBodyInputId.value = id;
         });
     </script>
 </body>
 </html>
-<?php ob_end_flush(); // Flush the output from the buffer
-?>
-
-<?php require_once './partials/footer.php'; ?>
