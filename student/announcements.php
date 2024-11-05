@@ -51,6 +51,7 @@ $notices = $stmt->get_result();
             color: #2980b9;
             animation: slideIn 1.5s;
             font-weight: 600;
+            font-size: 2rem;
         }
 
         .list-group-item {
@@ -69,7 +70,7 @@ $notices = $stmt->get_result();
         }
 
         .notice-icon {
-            font-size: 30px;
+            font-size: 1.5rem;
             margin-right: 15px;
             color: #3498db;
         }
@@ -77,6 +78,7 @@ $notices = $stmt->get_result();
         .notice-title {
             font-weight: 600;
             color: #2c3e50;
+            font-size: 1.25rem;
         }
 
         .notice-content {
@@ -90,7 +92,40 @@ $notices = $stmt->get_result();
         }
 
         .container {
-            max-width: 900px;
+            max-width: 700px;
+            padding: 55px;
+        }
+
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 1.7rem;
+            }
+
+            .notice-title {
+                font-size: 1.1rem;
+            }
+
+            .list-group-item {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .notice-icon {
+                font-size: 1.2rem;
+            }
+
+            .notice-title {
+                font-size: 1rem;
+            }
+
+            .list-group-item {
+                padding: 10px;
+            }
         }
 
         @keyframes slideIn {
@@ -123,7 +158,7 @@ $notices = $stmt->get_result();
                                 <?php echo nl2br(htmlspecialchars($notice['content'])); ?>
                             </p>
                             <small class="text-muted">
-                                Posted on: <?php echo $notice['created_at']; ?>
+                                Posted on: <?php echo htmlspecialchars($notice['created_at']); ?>
                             </small>
                         </div>
                     </li>
@@ -138,3 +173,5 @@ $notices = $stmt->get_result();
 </body>
 
 </html>
+
+
