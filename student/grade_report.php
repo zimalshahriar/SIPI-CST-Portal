@@ -1,3 +1,7 @@
+<?php
+include '../partials/navbar.php';
+include '../partials/sidebar.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

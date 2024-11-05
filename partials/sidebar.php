@@ -8,7 +8,7 @@ $user_photo = isset($_SESSION['photo']) ? $_SESSION['photo'] : 'default.jpg';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Responsive Sidebar</title>
     <!-- External CSS and JS -->
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -29,15 +29,22 @@ $user_photo = isset($_SESSION['photo']) ? $_SESSION['photo'] : 'default.jpg';
         }
         .nav {
             display: flex;
-            flex-direction: column; /* Ensures items are stacked vertically */
+            flex-direction: column;
         }
         .nav-profile {
-            padding: 15px 0;
+            
+            margin-bottom: 15px;
+            align-items: center;
+            width: 100%;   
+        }
+        .profile-item {
+            display: flex;
+            padding: 20px 0;
             border-bottom: 1px solid #eee;
             margin-bottom: 15px;
-            display: flex;
             align-items: center;
             width: 100%;
+
         }
         .nav-profile-image {
             width: 50px;
@@ -57,7 +64,7 @@ $user_photo = isset($_SESSION['photo']) ? $_SESSION['photo'] : 'default.jpg';
             border-radius: 8px;
             display: flex;
             align-items: center;
-            margin-bottom: 10px; /* Adds spacing between links */
+            margin-bottom: 10px;
             text-decoration: none;
         }
         .nav-link:hover, .nav-link.active {
@@ -68,14 +75,27 @@ $user_photo = isset($_SESSION['photo']) ? $_SESSION['photo'] : 'default.jpg';
             margin-right: 10px;
             font-size: 20px;
         }
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+        }
     </style>
 </head>
 <body>
 <div class="container-fluid page-body-wrapper">
-  <nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <!-- Toggle button for smaller screens -->
+  <button class="btn btn-primary d-md-none mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-expanded="false" aria-controls="sidebar">
+    Toggle Sidebar
+  </button>
+
+  <!-- Sidebar -->
+  <nav class="sidebar sidebar-offcanvas collapse show" id="sidebar">
     <ul class="nav">
       <li class="nav-item nav-profile">
-        <a href="#" class="nav-link">
+        <div  class="profile-item">
           <div class="nav-profile-image">
             <img src="../uploads/<?php echo htmlspecialchars($user_photo); ?>" alt="User Photo">
           </div>
@@ -83,28 +103,28 @@ $user_photo = isset($_SESSION['photo']) ? $_SESSION['photo'] : 'default.jpg';
             <span class="font-weight-bold mb-2"><?php echo htmlspecialchars($_SESSION['name'] ?? 'N/A'); ?></span>
             <span class="text-secondary text-small"><?php echo htmlspecialchars($_SESSION['user_type'] ?? 'N/A'); ?></span>
           </div>
-        </a>
+          </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php">
+        <a class="nav-link" href="announcements.php">
           <i class="mdi mdi-bell-outline"></i>
           <span class="menu-title">Announcements</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="view_grade_report.php">
+        <a class="nav-link" href="grade_report.php">
           <i class="mdi mdi-chart-line"></i>
           <span class="menu-title">Results</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="view_grade_report.php">
+        <a class="nav-link" href="pay_tuition.php">
           <i class="mdi mdi-cash-multiple"></i>
           <span class="menu-title">Tuition Fees</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="view_grade_report.php">
+        <a class="nav-link" href="curriculum.php">
           <i class="mdi mdi-book-open-page-variant"></i>
           <span class="menu-title">Subjects</span>
         </a>
