@@ -1,5 +1,4 @@
 <?php 
-session_start();
 // Get user photo
 $user_photo = isset($_SESSION['photo']) ? $_SESSION['photo'] : 'default.jpg';
 ?>
@@ -132,7 +131,7 @@ $user_photo = isset($_SESSION['photo']) ? $_SESSION['photo'] : 'default.jpg';
   <div class="collapse" id="informationDropdown">
     <ul class="nav flex-column ms-3">
       <li class="nav-item">
-        <a class="nav-link" href="subject.php">
+        <a class="nav-link" href="curriculum.php">
           <i class="mdi mdi-book-multiple"></i>
           Subject
         </a>
@@ -144,7 +143,7 @@ $user_photo = isset($_SESSION['photo']) ? $_SESSION['photo'] : 'default.jpg';
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="routine.php">
+        <a class="nav-link" href="class_schedule.php">
           <i class="mdi mdi-calendar-clock"></i>
           Routine
         </a>

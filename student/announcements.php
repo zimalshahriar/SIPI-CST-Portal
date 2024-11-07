@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../db/database.php';
 include '../partials/navbar.php';
 include '../partials/sidebar.php';
