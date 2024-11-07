@@ -29,7 +29,6 @@ while ($row = $semester_result->fetch_assoc()) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,32 +42,35 @@ while ($row = $semester_result->fetch_assoc()) {
         }
 
         body {
-            background-color: #f7f9fc;
-            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #a0c4ff, #bdb2ff);
+            font-family: 'Poppins', Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            color: #333;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 500px;
             width: 100%;
             padding: 40px;
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            animation: slideIn 0.7s ease;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 0.7s ease;
         }
 
         h2 {
             text-align: center;
-            color: #333;
+            color: #1d4e89;
+            font-weight: 600;
             margin-bottom: 1.5em;
             font-size: 1.8em;
         }
 
-        /* Floating Label Styles */
+        /* Form Group and Label Styling */
         .form-group {
             position: relative;
             margin-bottom: 24px;
@@ -79,45 +81,49 @@ while ($row = $semester_result->fetch_assoc()) {
             padding: 12px 14px;
             font-size: 16px;
             color: #333;
-            border: 1px solid #d1d9e6;
-            background-color: #ffffff;
-            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid transparent;
+            border-radius: 8px;
             outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: border 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
         }
 
         .form-control:focus {
             border-color: #4e89f8;
-            box-shadow: 0 0 10px rgba(78, 137, 248, 0.3);
+            box-shadow: 0 0 8px rgba(78, 137, 248, 0.3);
         }
 
-        /* Label Animation */
         label {
             position: absolute;
             left: 16px;
             top: 50%;
             transform: translateY(-50%);
-            color: #777;
-            background-color: #ffffff;
-            padding: 0 4px;
-            transition: 0.3s;
+            color: #555;
             font-size: 1em;
             pointer-events: none;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 0 4px;
+            transition: all 0.3s ease;
         }
 
         .form-control:focus + label,
         .form-control:not(:placeholder-shown) + label {
-            top: -8px;
+            top: -12px;
             left: 12px;
             color: #4e89f8;
             font-size: 0.85em;
             font-weight: bold;
         }
 
-        /* Custom Select Styling */
+        /* Select Styling */
         select.form-control {
             appearance: none;
-            background-color: #f1f5f9;
+            background-color: rgba(255, 255, 255, 0.9);
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%234e89f8" class="bi bi-chevron-down"%3E%3Cpath fill-rule="evenodd" d="M1.5 5.5a.5.5 0 0 1 .7 0l4.5 4.5L11.3 5.5a.5.5 0 0 1 .7.7l-5 5a.5.5 0 0 1-.7 0l-5-5a.5.5 0 0 1 0-.7z"/%3E%3C/svg%3E');
+            background-position: right 12px center;
+            background-repeat: no-repeat;
+            background-size: 1.2em;
         }
 
         /* Custom Button Styling */
@@ -127,26 +133,27 @@ while ($row = $semester_result->fetch_assoc()) {
             font-size: 1em;
             font-weight: bold;
             color: #ffffff;
-            background-color: #4e89f8;
+            background-color: #1d4e89;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s ease, transform 0.2s;
         }
 
         .btn-submit:hover {
-            background-color: #3c6fc3;
+            background-color: #163d6d;
         }
 
         .btn-submit:active {
             transform: scale(0.98);
         }
 
-        /* Slide-in Animation */
-        @keyframes slideIn {
+        /* Animation for container */
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(15px);
+                transform: translateY(10px);
             }
             to {
                 opacity: 1;
@@ -155,12 +162,10 @@ while ($row = $semester_result->fetch_assoc()) {
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <h2>Add New User</h2>
         <form action="process_add_user.php" method="post" enctype="multipart/form-data">
-            <!-- Select User Type -->
             <div class="form-group">
                 <select id="user_type" name="user_type" class="form-control" required>
                     <option value="" selected disabled hidden></option>
@@ -171,7 +176,6 @@ while ($row = $semester_result->fetch_assoc()) {
                 <label for="user_type">Select User Type</label>
             </div>
 
-            <!-- Common Fields -->
             <div class="form-group">
                 <input type="text" class="form-control" id="user_id" name="user_id" placeholder=" " required>
                 <label for="user_id">User ID</label>
@@ -189,46 +193,6 @@ while ($row = $semester_result->fetch_assoc()) {
                 <label for="password">Initial Password</label>
             </div>
 
-            <!-- Session Selection for Students -->
-            <div id="student-fields" style="display: none;">
-                <div class="form-group">
-                    <select id="session" name="session" class="form-control">
-                        <option value="" selected disabled hidden></option>
-                        <option value="2023">2023</option>
-                        <option value="2022">2022</option>
-                    </select>
-                    <label for="session">Select Session</label>
-                </div>
-
-                <div class="form-group">
-                    <select id="semester" name="semester" class="form-control">
-                        <option value="" selected disabled hidden></option>
-                        <option value="1st">1st</option>
-                        <option value="2nd">2nd</option>
-                        <option value="3rd">3rd</option>
-                        <option value="4th">4th</option>
-                        <option value="5th">5th</option>
-                        <option value="6th">6th</option>
-                        <option value="7th">7th</option>
-                        <option value="8th">8th</option>
-                    </select>
-                    <label for="semester">Select Semester</label>
-                </div>
-            </div>
-
-            <!-- Additional Fields for Teachers -->
-            <div id="teacher-fields" style="display: none;">
-                <div class="form-group">
-                    <select id="role" name="role" class="form-control">
-                        <option value="" selected disabled hidden></option>
-                        <option value="CI">Chief Instructor</option>
-                        <option value="Instructor">Instructor</option>
-                        <option value="Junior Instructor">Junior Instructor</option>
-                    </select>
-                    <label for="role">Role</label>
-                </div>
-            </div>
-
             <div class="form-group">
                 <input type="file" class="form-control" id="photo" name="photo">
                 <label for="photo">Upload Photo</label>
@@ -237,15 +201,5 @@ while ($row = $semester_result->fetch_assoc()) {
             <button type="submit" class="btn-submit">Add User</button>
         </form>
     </div>
-
-    <script>
-        // Show/Hide fields based on the user type selection
-        document.getElementById('user_type').addEventListener('change', function() {
-            const userType = this.value;
-            document.getElementById('student-fields').style.display = userType === 'student' ? 'block' : 'none';
-            document.getElementById('teacher-fields').style.display = userType === 'teacher' ? 'block' : 'none';
-        });
-    </script>
 </body>
-
 </html>
