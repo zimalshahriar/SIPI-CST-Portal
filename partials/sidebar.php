@@ -11,8 +11,8 @@ $user_photo = isset($_SESSION['photo']) ? $_SESSION['photo'] : 'default.jpg';
     <title>Responsive Sidebar</title>
     <!-- External CSS and JS -->
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <style>
         .sidebar {
             background: #c8d7e6;
@@ -124,11 +124,34 @@ $user_photo = isset($_SESSION['photo']) ? $_SESSION['photo'] : 'default.jpg';
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="curriculum.php">
-          <i class="mdi mdi-book-open-page-variant"></i>
-          <span class="menu-title">Subjects</span>
+  <a class="nav-link" data-bs-toggle="collapse" href="#informationDropdown" role="button" aria-expanded="false" aria-controls="informationDropdown">
+    <i class="mdi mdi-information-outline"></i>
+    <span class="menu-title">Informations</span>
+    <i class="mdi mdi-chevron-down" style="margin-left:auto;"></i>
+  </a>
+  <div class="collapse" id="informationDropdown">
+    <ul class="nav flex-column ms-3">
+      <li class="nav-item">
+        <a class="nav-link" href="subject.php">
+          <i class="mdi mdi-book-multiple"></i>
+          Subject
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="teachers.php">
+          <i class="mdi mdi-account-multiple"></i>
+          Teachers
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="routine.php">
+          <i class="mdi mdi-calendar-clock"></i>
+          Routine
+        </a>
+      </li>
+    </ul>
+  </div>
+</li>
       <li class="nav-item">
         <a class="nav-link" href="settings.php">
           <i class="mdi mdi-cog"></i>

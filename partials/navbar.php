@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="btn btn-danger" href="logout.php">
+                    <a class="btn btn-danger" href="../logout.php">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </a>
                 </li>
