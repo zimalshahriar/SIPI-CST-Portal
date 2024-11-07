@@ -106,13 +106,13 @@ $user_type = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : 'N/A';
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="manage_users.php">
+        <a class="nav-link" href="manage_user.php">
           <i class="mdi mdi-account-multiple"></i>
           <span class="menu-title">Manage Users</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="manage_subjects.php">
+        <a class="nav-link" href="subject_management.php">
           <i class="mdi mdi-book-multiple"></i>
           <span class="menu-title">Manage Subjects</span>
         </a>
