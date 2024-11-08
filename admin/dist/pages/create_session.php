@@ -35,6 +35,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Create Session - SIPI CST Portal</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        /* Custom Styles for Premium Look */
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 900px;
+            background-color: #fff;
+            border-radius: 0px;
+            padding: 20px 30px;
+            margin-top: 40px;
+        }
+
+        h2 {
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 576px) {
+            .container {
+                margin-top: 20px;
+                padding: 15px 20px;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .btn-primary {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -51,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="session" class="form-label">Session (e.g., 2023-24)</label>
                 <input type="text" class="form-control" id="session" name="session" placeholder="Enter session" required>
             </div>
-            <button type="submit" class="btn btn-primary">Create Session</button>
+            <button type="submit" class="btn btn-primary w-30">Create Session</button>
         </form>
     </div>
 
@@ -59,6 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
 
 </main>
 <?php require_once 'partials/footer.php' ?>

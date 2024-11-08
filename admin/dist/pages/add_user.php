@@ -57,10 +57,7 @@ while ($row = $semester_result->fetch_assoc()) {
 
           width: 100%;
           padding: 40px;
-          background: rgba(255, 255, 255, 0.85);
-          border-radius: 15px;
-          backdrop-filter: blur(10px);
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+          border-radius: 0px;
           animation: fadeIn 0.7s ease;
       }
 
@@ -130,7 +127,7 @@ while ($row = $semester_result->fetch_assoc()) {
 
       /* Custom Button Styling */
       .btn-submit {
-          width: 100%;
+          width: 30%;
           padding: 12px;
           font-size: 1em;
           font-weight: bold;
