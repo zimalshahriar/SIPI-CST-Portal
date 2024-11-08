@@ -1,0 +1,91 @@
+/* Main container styling */
+.container {
+  max-width: 700px;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Heading */
+h2 {
+  font-weight: 700;
+  color: #333;
+  font-size: 28px;
+}
+
+/* Form group styling */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #555;
+}
+
+/* Form control inputs */
+.form-control {
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Select dropdowns */
+select.form-control {
+  background-image: linear-gradient(45deg, #007bff 50%, transparent 50%);
+  background-position: 100% 50%;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  appearance: none;
+  padding-right: 1.5rem;
+}
+
+/* Button styling */
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Hidden sections */
+#student-fields,
+#teacher-fields {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  background-color: #e9ecef;
+}
+
+/* Footer styling */
+footer.footer {
+  font-size: 14px;
+  color: #aaa;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .form-group label {
+    font-size: 14px;
+  }
+
+  .btn-primary {
+    font-size: 16px;
+  }
+}

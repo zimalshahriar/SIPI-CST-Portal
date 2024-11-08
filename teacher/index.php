@@ -1,6 +1,12 @@
-<?php require_once './partials/header.php' ?>
- <?php require_once './partials/navbar.php' ?>
- <?php require_once './partials/sidebar.php' ?>
-      
-<h1>hello this is for test admin panel mastered by sourov kumar</h1>
-<?php require_once './partials/footer.php' ?>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>student</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+  <script>window.location.href = './dist/pages/index.php'</script>
+</body>
+</html>
