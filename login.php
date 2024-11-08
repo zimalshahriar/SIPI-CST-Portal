@@ -133,7 +133,7 @@ body {
 }
 
 .container button {
-    background-color: #a82d2d;
+    background-color:#1f3d7a;
     color: #fff;
     padding: 10px 45px;
     border: 1px solid transparent;
@@ -246,9 +246,9 @@ body {
 }
 
 .toogle {
-    background-color: #a82d2d;
+    background-color:#1f3d7a;
     height: 100%;
-    background: linear-gradient(to right, #a82d2d, #a82d2d);
+    background: #1f3d7a;
     color: #fff;
     position: relative;
     left: -100%;
@@ -345,9 +345,9 @@ body {
                     <button class="hidden" id="login">Login</button>
                 </div>
                 <div class="toogle-panel toogle-right">
-                <img style="width: 250px;"  src="image/sipi logo.png" alt="">
-                    <h2>Welcome To SIPI CST Portal!</h2>
-                    <p style="margin-bottom: 80px;">Shyamoli Ideal Polytechnic Institute - Computer Science and Technology Department.</p>
+                <img style="width: 165px;"  src="image/sipi logo05.png" alt="">
+                    <h2 style="margin-top: 10px;">Welcome To SIPI CST Portal!</h2>
+                    <p style="margin-bottom: 65px;">Shyamoli Ideal Polytechnic Institute - Computer Science and Technology Department.</p>
                     <!-- <button class="hidden" id="register">Login</button> -->
                 </div>
             </div>
