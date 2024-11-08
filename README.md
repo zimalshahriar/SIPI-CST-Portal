@@ -92,13 +92,6 @@ Contributions are welcome! If you have suggestions or improvements, please fork 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For inquiries or feedback, please contact:
-- **Name**: Shahriar Zim
-- **Email**: sz.zim2050@gmail.com
-
 ---
 
 Thank you for using the SIPI-CST-Portal! We hope it enhances your academic experience at SIPI.
