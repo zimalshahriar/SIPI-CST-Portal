@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2024 at 08:36 AM
+-- Generation Time: Nov 10, 2024 at 08:31 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -64,6 +64,41 @@ CREATE TABLE `class_schedule` (
 
 INSERT INTO `class_schedule` (`id`, `subject_id`, `day`, `start_time`, `end_time`, `teacher_name`, `semester`) VALUES
 (3, 1, 'Monday', '06:10:00', '07:10:00', 'Sourov Sarker', '7th');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `grade_reports`
+--
+
+CREATE TABLE `grade_reports` (
+  `id` int(11) NOT NULL,
+  `student_id` int(11) DEFAULT NULL,
+  `subject_id` int(11) DEFAULT NULL,
+  `semester` varchar(20) DEFAULT NULL,
+  `attendance` decimal(5,2) DEFAULT NULL,
+  `mid_exam` decimal(5,2) DEFAULT NULL,
+  `class_test` decimal(5,2) DEFAULT NULL,
+  `quiz_test` decimal(5,2) DEFAULT NULL,
+  `performance_assessment` decimal(5,2) DEFAULT NULL,
+  `assignment_homework` decimal(5,2) DEFAULT NULL,
+  `total_tc` decimal(5,2) DEFAULT NULL,
+  `experiment` decimal(5,2) DEFAULT NULL,
+  `homework` decimal(5,2) DEFAULT NULL,
+  `error` decimal(5,2) DEFAULT NULL,
+  `evaluation` decimal(5,2) DEFAULT NULL,
+  `discussion_solution` decimal(5,2) DEFAULT NULL,
+  `additional_hours` decimal(5,2) DEFAULT NULL,
+  `total_pc` decimal(5,2) DEFAULT NULL,
+  `remarks` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `grade_reports`
+--
+
+INSERT INTO `grade_reports` (`id`, `student_id`, `subject_id`, `semester`, `attendance`, `mid_exam`, `class_test`, `quiz_test`, `performance_assessment`, `assignment_homework`, `total_tc`, `experiment`, `homework`, `error`, `evaluation`, `discussion_solution`, `additional_hours`, `total_pc`, `remarks`) VALUES
+(3, 11, 1, '7th', 86.00, 18.50, 3.00, 4.00, 4.00, 4.00, 33.50, 4.00, 4.00, 4.00, 4.00, 4.00, 4.00, 24.00, '3.4');
 
 -- --------------------------------------------------------
 
@@ -179,6 +214,14 @@ ALTER TABLE `class_schedule`
   ADD KEY `subject_id` (`subject_id`);
 
 --
+-- Indexes for table `grade_reports`
+--
+ALTER TABLE `grade_reports`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`),
+  ADD KEY `subject_id` (`subject_id`);
+
+--
 -- Indexes for table `notices`
 --
 ALTER TABLE `notices`
@@ -217,6 +260,12 @@ ALTER TABLE `attendance`
 -- AUTO_INCREMENT for table `class_schedule`
 --
 ALTER TABLE `class_schedule`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `grade_reports`
+--
+ALTER TABLE `grade_reports`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
@@ -259,6 +308,13 @@ ALTER TABLE `attendance`
 --
 ALTER TABLE `class_schedule`
   ADD CONSTRAINT `class_schedule_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`);
+
+--
+-- Constraints for table `grade_reports`
+--
+ALTER TABLE `grade_reports`
+  ADD CONSTRAINT `grade_reports_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `grade_reports_ibfk_2` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
