@@ -9,7 +9,7 @@ require_once 'partials/sidebar.php';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Department curriculam</title>
+  <title>Department Curriculum</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     .subject-card {
@@ -57,7 +57,6 @@ require_once 'partials/sidebar.php';
     }
 
     .content-wrapper {
-      margin-left: 250px;
       padding: 20px;
     }
 
@@ -82,108 +81,109 @@ require_once 'partials/sidebar.php';
   </style>
 </head>
 <body>
-    <div class="content-wrapper">
-      <h2 class="text-center">Department Curriculum (not finished dummy page )</h2>
-      <div class="container my-5">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col">
-            <div class="card subject-card">
-              <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
-              <div class="card-body">
-                <h5 class="card-title">Subject 1</h5>
-                <p class="card-text">Short description of Subject 1.</p>
-              </div>
-              <div class="subject-info">
-                <p><strong>Credits:</strong> 3</p>
-                <p><strong>Faculty:</strong> Dr. ABC</p>
-                <p><strong>Schedule:</strong> Mon/Wed/Fri, 10:00 AM - 12:00 PM</p>
-              </div>
+  <div class="content-wrapper">
+    <h2 class="text-center">Department Curriculum</h2>
+    <div class="container my-5">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        
+        <!-- Card 1 -->
+        <div class="col">
+          <div class="card subject-card">
+            <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
+            <div class="card-body">
+              <h5 class="card-title">Subject 1</h5>
+              <p class="card-text">Introduction to the basics of Subject 1.</p>
             </div>
-          </div>
-
-          <div class="col">
-            <div class="card subject-card">
-              <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
-              <div class="card-body">
-                <h5 class="card-title">Subject 2</h5>
-                <p class="card-text">Short description of Subject 2.</p>
-              </div>
-              <div class="subject-info">
-                <p><strong>Credits:</strong> 4</p>
-                <p><strong>Faculty:</strong> Prof. XYZ</p>
-                <p><strong>Schedule:</strong> Tue/Thu, 2:00 PM - 4:00 PM</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card subject-card">
-              <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
-              <div class="card-body">
-                <h5 class="card-title">Subject 3</h5>
-                <p class="card-text">Short description of Subject 3.</p>
-              </div>
-              <div class="subject-info">
-                <p><strong>Credits:</strong> 4</p>
-                <p><strong>Faculty:</strong> Prof. XYZ</p>
-                <p><strong>Schedule:</strong> Tue/Thu, 2:00 PM - 4:00 PM</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card subject-card">
-              <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
-              <div class="card-body">
-                <h5 class="card-title">Subject 4</h5>
-                <p class="card-text">Short description of Subject 4.</p>
-              </div>
-              <div class="subject-info">
-                <p><strong>Credits:</strong> 4</p>
-                <p><strong>Faculty:</strong> Prof. XYZ</p>
-                <p><strong>Schedule:</strong> Tue/Thu, 2:00 PM - 4:00 PM</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card subject-card">
-              <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
-              <div class="card-body">
-                <h5 class="card-title">Subject 5</h5>
-                <p class="card-text">Short description of Subject 5.</p>
-              </div>
-              <div class="subject-info">
-                <p><strong>Credits:</strong> 4</p>
-                <p><strong>Faculty:</strong> Prof. XYZ</p>
-                <p><strong>Schedule:</strong> Tue/Thu, 2:00 PM - 4:00 PM</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card subject-card">
-              <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
-              <div class="card-body">
-                <h5 class="card-title">Subject 6</h5>
-                <p class="card-text">Short description of Subject 6.</p>
-              </div>
-              <div class="subject-info">
-                <p><strong>Credits:</strong> 4</p>
-                <p><strong>Faculty:</strong> Prof. XYZ</p>
-              <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
-              <div class="card-body">
-                <h5 class="card-title">Subject 6</h5>
-                <p class="card-text">Short description of Subject 6.</p>
-              </div>
-              <div class="subject-info">
-                <p><strong>Credits:</strong> 4</p>
-                <p><strong>Faculty:</strong> Prof. XYZ</p>
-                <p><strong>Schedule:</strong> Tue/Thu, 2:00 PM - 4:00 PM</p>
-              </div>
+            <div class="subject-info">
+              <p><strong>Credits:</strong> 3</p>
+              <p><strong>Faculty:</strong> Dr. ABC</p>
+              <p><strong>Schedule:</strong> Mon/Wed/Fri, 10:00 AM - 12:00 PM</p>
             </div>
           </div>
         </div>
+
+        <!-- Card 2 -->
+        <div class="col">
+          <div class="card subject-card">
+            <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
+            <div class="card-body">
+              <h5 class="card-title">Subject 2</h5>
+              <p class="card-text">Intermediate concepts in Subject 2.</p>
+            </div>
+            <div class="subject-info">
+              <p><strong>Credits:</strong> 4</p>
+              <p><strong>Faculty:</strong> Prof. XYZ</p>
+              <p><strong>Schedule:</strong> Tue/Thu, 2:00 PM - 4:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col">
+          <div class="card subject-card">
+            <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
+            <div class="card-body">
+              <h5 class="card-title">Subject 3</h5>
+              <p class="card-text">Advanced study in Subject 3.</p>
+            </div>
+            <div class="subject-info">
+              <p><strong>Credits:</strong> 4</p>
+              <p><strong>Faculty:</strong> Dr. DEF</p>
+              <p><strong>Schedule:</strong> Mon/Wed/Fri, 1:00 PM - 3:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col">
+          <div class="card subject-card">
+            <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
+            <div class="card-body">
+              <h5 class="card-title">Subject 4</h5>
+              <p class="card-text">Explorative approach in Subject 4.</p>
+            </div>
+            <div class="subject-info">
+              <p><strong>Credits:</strong> 4</p>
+              <p><strong>Faculty:</strong> Dr. GHI</p>
+              <p><strong>Schedule:</strong> Tue/Thu, 10:00 AM - 12:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="col">
+          <div class="card subject-card">
+            <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
+            <div class="card-body">
+              <h5 class="card-title">Subject 4</h5>
+              <p class="card-text">Explorative approach in Subject 4.</p>
+            </div>
+            <div class="subject-info">
+              <p><strong>Credits:</strong> 4</p>
+              <p><strong>Faculty:</strong> Dr. GHI</p>
+              <p><strong>Schedule:</strong> Tue/Thu, 10:00 AM - 12:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+         <!-- Card 6 -->
+         <div class="col">
+          <div class="card subject-card">
+            <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
+            <div class="card-body">
+              <h5 class="card-title">Subject 4</h5>
+              <p class="card-text">Explorative approach in Subject 4.</p>
+            </div>
+            <div class="subject-info">
+              <p><strong>Credits:</strong> 4</p>
+              <p><strong>Faculty:</strong> Dr. GHI</p>
+              <p><strong>Schedule:</strong> Tue/Thu, 10:00 AM - 12:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add additional cards as needed -->
+        
       </div>
     </div>
   </div>
@@ -191,5 +191,6 @@ require_once 'partials/sidebar.php';
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
 
 <?php require_once 'partials/footer.php' ?>
