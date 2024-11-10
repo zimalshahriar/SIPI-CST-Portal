@@ -28,7 +28,7 @@ while ($row = $semester_result->fetch_assoc()) {
     $semesters[] = $row['semester'];
 }
 ?>
-
+<main class="app-main">
 <!DOCTYPE html>
 <html lang="en">
 <head>

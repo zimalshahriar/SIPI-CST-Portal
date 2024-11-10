@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
+<main class="app-main">
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -181,7 +181,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 
 </body>
-
 </html>
-
+</main>
 <?php require_once './partials/footer.php' ?>

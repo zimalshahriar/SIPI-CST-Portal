@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $attendanceRecords = $stmt->get_result();
 }
 ?>
-
+<main class="app-main">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,5 +87,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 </body>
 </html>
-
+</main>
 <?php require_once 'partials/footer.php' ?>

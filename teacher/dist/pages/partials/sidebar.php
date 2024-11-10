@@ -47,18 +47,17 @@
                     <p>Attendance Report</p>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a href="publish_grade_report.php" class="nav-link">
-                    <i class="nav-icon bi bi-graph-up"></i>
-                    <p>Publish Grades</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="settings.php" class="nav-link">
-                    <i class="nav-icon bi bi-gear"></i>
-                    <p>Settings</p>
-                    </a>
-                  </li>
+                      <li class="nav-item">
+                      <a href="grade_report.php" class="nav-link">
+                      <i class="nav-icon bi bi-upload"></i>
+                      <p>Publish Grades</p>
+                      </a>
+                      </li>
+                      <li class="nav-item">
+                      <a href="manage_grade_report.php" class="nav-link">
+                      <i class="nav-icon bi bi-pencil"></i>
+                      <p>Manage Grades</p>
+                      </a>
                   </ul>
                 </nav>
             </div> <!--end::Sidebar Wrapper-->

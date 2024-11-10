@@ -19,7 +19,7 @@ if (isset($_GET['message'])) {
     $message = $_GET['message'];
 }
 ?>
-
+<main class="app-main">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -167,6 +167,6 @@ if (isset($_GET['message'])) {
 
 </body>
 </html>
-
+</main>
 <?php require_once './partials/footer.php'; ?>
 

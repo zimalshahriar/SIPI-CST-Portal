@@ -69,7 +69,7 @@ if ($semester_result->num_rows > 0) {
 
 }
 ?>
-
+<main class="app-main">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -252,4 +252,5 @@ if ($semester_result->num_rows > 0) {
     </script>
 </body>
 </html>
+</main>
 <?php require_once 'partials/footer.php' ?>

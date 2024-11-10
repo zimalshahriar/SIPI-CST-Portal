@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   exit;
 }
 ?>
-
+<main class="app-main">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,5 +85,5 @@ $(document).on('click', '#fetchStudents', function () {
 </script>
 </body>
 </html>
-
+</main>
 <?php require_once 'partials/footer.php' ?>
