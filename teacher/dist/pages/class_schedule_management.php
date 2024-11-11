@@ -27,57 +27,137 @@ if (isset($_GET['message'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <title>Class Schedule Management - SIPI CST Portal</title>
-    <!-- Include jQuery for modal handling -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #f9fafc;
+            color: #333;
+        }
+
+        /* Container and Header Styling */
+        .container {
+            margin-top: 0px;
+            max-width: 1200px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4a4e69;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Card Layout */
+        .schedule-card {
+            background: #fff;
+            border: 1px solid #e6e6e6;
+            border-radius: 2px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .schedule-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header, .card-footer {
+            background-color: #f4f5f7;
+            color: #555;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .card-body {
+            padding: 50px;
+            text-align: center;
+        }
+
+        .subject-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .card-text {
+            font-size: 20px;
+            color: #6b7280;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            transition: background-color 0.3s ease;
+            padding: 5px;
+        }
+
+        .btn-primary:hover {
+            background-color: #007bff;
+        }
+
+        .btn-danger {
+            background-color: #e11d48;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-danger:hover {
+            background-color: #be123c;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="container mt-5">
+<div class="container">
     <h2>Class Schedule Management</h2>
 
     <?php if ($message): ?>
         <div class="alert alert-success"><?= $message; ?></div>
     <?php endif; ?>
 
-    <table class="table mt-3">
-        <thead>
-            <tr>
-                <th>Subject Name</th>
-                <th>Day</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>Semester</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($row = $class_schedules->fetch_assoc()): ?>
-            <tr>
-                <td><?= $row['subject_name']; ?></td>
-                <td><?= $row['day']; ?></td>
-                <td><?= $row['start_time']; ?></td>
-                <td><?= $row['end_time']; ?></td>
-                <td><?= $row['semester']; ?></td>
-                <td>
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal"
-                            data-id="<?= $row['id']; ?>"
-                            data-subject-id="<?= $row['subject_id']; ?>"
-                            data-day="<?= $row['day']; ?>"
-                            data-start-time="<?= $row['start_time']; ?>"
-                            data-end-time="<?= $row['end_time']; ?>"
-                            data-semester="<?= $row['semester']; ?>">
-                        Edit
-                    </button>
-                    <button class="btn btn-danger btn-sm delete-btn" data-id="<?= $row['id']; ?>">
-                        Delete
-                    </button>
-                </td>
-            </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
+    <div class="row">
+        <?php while ($row = $class_schedules->fetch_assoc()): ?>
+            <div class="col-md-6 col-lg-4">
+                <div class="schedule-card">
+                    <div class="card-header"><?= $row['semester']; ?> Semester</div>
+                    <div class="card-body">
+                        <h5 class="subject-title"><?= $row['subject_name']; ?></h5>
+                        <p class="card-text">Day: <?= $row['day']; ?></p>
+                        <p class="card-text">Time: <?= $row['start_time']; ?> - <?= $row['end_time']; ?></p>
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal"
+                                data-id="<?= $row['id']; ?>"
+                                data-subject-id="<?= $row['subject_id']; ?>"
+                                data-day="<?= $row['day']; ?>"
+                                data-start-time="<?= $row['start_time']; ?>"
+                                data-end-time="<?= $row['end_time']; ?>"
+                                data-semester="<?= $row['semester']; ?>">
+                            Edit
+                        </button>
+                        <button class="btn btn-danger btn-sm delete-btn" data-id="<?= $row['id']; ?>">
+                            Delete
+                        </button>
+                    </div>
+                    <div class="card-footer"><?= $row['semester']; ?></div>
+                </div>
+            </div>
+        <?php endwhile; ?>
+    </div>
 </div>
 
-<!-- Modal for updating class schedule -->
+<!-- Update Schedule Modal -->
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -132,9 +212,9 @@ if (isset($_GET['message'])) {
 </div>
 
 <script>
-    // Script to populate modal with data
+    // Populate modal data
     $('#updateModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget); // Button that triggered the modal
+        var button = $(event.relatedTarget);
         var id = button.data('id');
         var subjectId = button.data('subject-id');
         var day = button.data('day');
@@ -142,7 +222,6 @@ if (isset($_GET['message'])) {
         var endTime = button.data('end-time');
         var semester = button.data('semester');
 
-        // Update the modal's content.
         var modal = $(this);
         modal.find('#schedule_id').val(id);
         modal.find('#subject_id').val(subjectId);
@@ -161,12 +240,12 @@ if (isset($_GET['message'])) {
     });
 </script>
 
-<!-- Bootstrap JS (optional for modal functionality) -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
 </body>
 </html>
+
 </main>
 <?php require_once './partials/footer.php'; ?>
 

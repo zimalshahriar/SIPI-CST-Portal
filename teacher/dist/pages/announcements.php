@@ -39,99 +39,139 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <main class="app-main">
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post New Notice</title>
-
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <style>
         body {
-            background: #f4f7fc;
             font-family: 'Poppins', sans-serif;
-            color: #333;
+            color: #2d3748;
         }
 
         .container {
-            max-width: 800px;
-            margin-top: 5%;
+            max-width: 100%;
+            margin: 0;
+            display: grid;
+            border-radius: 0px;
+            
         }
 
         .card {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
             border: none;
-            border-radius: 16px;
-            background: #ffffff;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-            padding: 40px 30px;
+            border-radius: 5px;
+            padding: 30px;
         }
 
         h2 {
-            color: #2c3e50;
+            color: #2c5282;
             font-weight: 600;
-            font-size: 1.8rem;
-            margin-bottom: 30px;
+            font-size: 2rem;
             text-align: center;
+            grid-column: span 2;
+        }
+
+        .form-group {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
         }
 
         .form-label {
             font-weight: 500;
-            color: #555;
+            color: #4a5568;
         }
 
         .form-control, .form-select {
-            background-color: #f7f9fc;
-            border: 1px solid #d1d9e0;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            padding: 12px 15px;
+            background-color: #edf2f7;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            padding: 10px 15px;
             font-size: 1rem;
-            color: #333;
+            color: #2d3748;
             transition: border-color 0.3s, box-shadow 0.3s;
         }
 
         .form-control:focus, .form-select:focus {
-            border-color: #1abc9c;
-            box-shadow: 0 0 8px rgba(26, 188, 156, 0.2);
+            border-color: #2c5282;
+            box-shadow: 0 0 8px rgba(44, 82, 130, 0.2);
             outline: none;
         }
 
-        .btn-gradient-primary {
-            background: linear-gradient(135deg, #1abc9c, #16a085);
+        .btn-gradient {
+            background: linear-gradient(135deg, #007bff, #007bff);
             color: #ffffff;
             font-weight: 600;
             padding: 12px 20px;
             border: none;
             border-radius: 8px;
             transition: background 0.3s ease;
-            display: block;
-            width: 100%;
             font-size: 1.1rem;
+            text-transform: uppercase;
+            grid-column: span 2;
         }
 
-        .btn-gradient-primary:hover {
-            background: linear-gradient(135deg, #16a085, #1abc9c);
+        .btn-gradient:hover {
+            background: linear-gradient(135deg, #007bff, #007bff);
         }
 
-        .btn-gradient-primary:focus {
-            box-shadow: 0 0 8px rgba(26, 188, 156, 0.4);
+        .notice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .notice-card {
+            padding: 20px;
+            border-radius: 8px;
+            background: #e6fffa;
+            color: #2c7a7b;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .notice-card h4 {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .notice-card p {
+            margin: 10px 0 0;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        .badge {
+            font-size: 0.8rem;
+            margin-top: 10px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
         }
     </style>
 </head>
+<body>
     <div class="container">
         <div class="card">
-            <h2>📢 Post New Notice</h2>
+            <h2>📢 Post a New Notice</h2>
             <form id="noticeForm" action="" method="post">
-                <div class="mb-3">
+                <div class="form-group">
                     <label for="title" class="form-label">Title</label>
                     <input type="text" class="form-control" id="title" name="title" placeholder="Enter notice title" required>
                 </div>
-                <div class="mb-3">
+                <div class="form-group">
                     <label for="content" class="form-label">Content</label>
-                    <textarea class="form-control" id="content" name="content" rows="5" placeholder="Enter notice content" required></textarea>
+                    <textarea class="form-control" id="content" name="content" rows="4" placeholder="Enter notice content" required></textarea>
                 </div>
-                <div class="mb-3">
+                <div class="form-group">
                     <label for="semester" class="form-label">Target Semester</label>
                     <select class="form-select" id="semester" name="semester" required>
                         <option value="All Semester">All Semester</option>
@@ -142,18 +182,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-gradient-primary mt-4">Post Notice</button>
+                <button type="submit" class="btn btn-gradient">Submit Notice</button>
             </form>
         </div>
-    </div>
 
     <!-- Toastr JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
     <script>
-        // Show Toastr notification if there's a message
         <?php if ($message): ?>
-            alert("<?php echo htmlspecialchars($message); ?>");
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -164,7 +200,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 "onclick": null,
                 "showDuration": "300",
                 "hideDuration": "1000",
-                "timeOut": "2000", // Show for 2 seconds
+                "timeOut": "2000",
                 "extendedTimeOut": "1000",
                 "showEasing": "swing",
                 "hideEasing": "linear",
@@ -179,8 +215,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endif; ?>
         <?php endif; ?>
     </script>
-
 </body>
 </html>
+
 </main>
 <?php require_once './partials/footer.php' ?>

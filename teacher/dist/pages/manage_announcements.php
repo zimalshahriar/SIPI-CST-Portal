@@ -93,14 +93,21 @@ if ($semester_result->num_rows > 0) {
         }
 
         .container {
-            margin-top: 50px;
+            margin-top: 0px;
+        }
+
+        .table-container {
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
 
         .table {
             background-color: #ffffff;
-            border-radius: 8px;
+            border-radius: 2px;
             overflow: hidden;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            grid-column: 1;
         }
 
         .table thead {
@@ -121,7 +128,7 @@ if ($semester_result->num_rows > 0) {
             font-size: 0.9rem;
         }
 
-        /* Edit Modal */
+        /* Modal Styles */
         .modal-content {
             border-radius: 8px;
             padding: 20px;
@@ -139,6 +146,26 @@ if ($semester_result->num_rows > 0) {
         .btn-primary, .btn-secondary {
             font-size: 0.9rem;
         }
+        .btn-success{
+            background-color:#007bff ;
+        }
+        .btn-success:hover{
+            color: #333;
+            background-color: #007bff;
+        }
+
+        /* Make the layout responsive */
+        @media (min-width: 768px) {
+            .table-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .table-container {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -152,39 +179,41 @@ if ($semester_result->num_rows > 0) {
         <?php endif; ?>
 
         <!-- Notices Table -->
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Content</th>
-                    <th>Semester</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if ($result->num_rows > 0): ?>
-                    <?php while ($notice = $result->fetch_assoc()): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($notice['title']); ?></td>
-                            <td><?php echo nl2br(htmlspecialchars($notice['content'])); ?></td>
-                            <td><?php echo htmlspecialchars($notice['semester']); ?></td>
-                            <td>
-                                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editModal"
-                                    data-id="<?php echo $notice['id']; ?>"
-                                    data-title="<?php echo htmlspecialchars($notice['title']); ?>"
-                                    data-content="<?php echo htmlspecialchars($notice['content']); ?>"
-                                    data-semester="<?php echo htmlspecialchars($notice['semester']); ?>">Edit</button>
-                                <a href="manage_announcements.php?delete=<?php echo $notice['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
-                <?php else: ?>
+        <div class="table-container">
+            <table class="table table-bordered">
+                <thead>
                     <tr>
-                        <td colspan="4" class="text-center">No notices available</td>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>Semester</th>
+                        <th>Actions</th>
                     </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php if ($result->num_rows > 0): ?>
+                        <?php while ($notice = $result->fetch_assoc()): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($notice['title']); ?></td>
+                                <td><?php echo nl2br(htmlspecialchars($notice['content'])); ?></td>
+                                <td><?php echo htmlspecialchars($notice['semester']); ?></td>
+                                <td>
+                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editModal"
+                                        data-id="<?php echo $notice['id']; ?>"
+                                        data-title="<?php echo htmlspecialchars($notice['title']); ?>"
+                                        data-content="<?php echo htmlspecialchars($notice['content']); ?>"
+                                        data-semester="<?php echo htmlspecialchars($notice['semester']); ?>">Edit</button>
+                                    <a href="manage_announcements.php?delete=<?php echo $notice['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="4" class="text-center">No notices available</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- Edit Modal -->
@@ -252,5 +281,6 @@ if ($semester_result->num_rows > 0) {
     </script>
 </body>
 </html>
+
 </main>
 <?php require_once 'partials/footer.php' ?>

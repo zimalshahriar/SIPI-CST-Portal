@@ -59,14 +59,17 @@ ob_end_flush(); // End output buffering and flush output
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 88vh;
         }
 
         /* Form Card Design with gradient background */
         .card {
-            border-radius: 0px;
+            border-radius: 4px;
             padding: 2.5rem;
             width: 100%;
             max-width: 800px;
+            background: #fff;
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
@@ -232,11 +235,7 @@ ob_end_flush(); // End output buffering and flush output
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-<<<<<<< HEAD
 </main>
-=======
-
->>>>>>> 8933276ea0886a21fb8eac17a24906ec432ecb34
 <?php require_once './partials/footer.php'; ?>
 
 

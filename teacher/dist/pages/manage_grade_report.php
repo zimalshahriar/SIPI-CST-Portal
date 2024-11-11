@@ -45,77 +45,171 @@ if (isset($_POST['subject_id']) && isset($_POST['semester'])) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manage Grade Reports - SIPI CST Portal</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    /* Custom CSS */
+    body {
+      background-color: #f4f7fc;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .container {
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      border-radius: 0px;
+      margin-top: 0px;
+    }
+
+    h2 {
+      text-align: center;
+      color: black;
+      font-weight: bold;
+      margin-bottom: 30px;
+      font-size: 32px;
+    }
+
+    .form-label {
+      font-weight: bold;
+    }
+
+    .form-select, .btn {
+      border-radius: 5px;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    .table thead th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .table td, .table th {
+      vertical-align: middle;
+    }
+
+    .btn-sm {
+      padding: 5px 10px;
+    }
+
+    .btn-warning {
+      background-color: #ffc107;
+    }
+
+    .btn-warning:hover {
+      background-color: #e0a800;
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+    }
+
+    .btn-danger:hover {
+      background-color: #c82333;
+    }
+
+    .table-responsive {
+      margin-top: 20px;
+    }
+
+    .row {
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
-<div class="container mt-5">
+
+<div class="container">
   <h2>Manage Grade Reports</h2>
 
   <!-- Form to select semester and subject -->
   <form method="POST">
-      <div class="mb-3">
+    <div class="row">
+      <!-- First Column for Semester -->
+      <div class="col-md-6 col-sm-12">
+        <div class="mb-3">
           <label for="semester" class="form-label">Select Semester</label>
           <select id="semester" name="semester" class="form-select" required>
-              <option value="">Select Semester</option>
-              <?php foreach ($semesters as $sem): ?>
-                  <option value="<?= $sem; ?>" <?= (isset($semester) && $semester === $sem) ? 'selected' : ''; ?>><?= $sem; ?></option>
-              <?php endforeach; ?>
+            <option value="">Select Semester</option>
+            <?php foreach ($semesters as $sem): ?>
+                <option value="<?= $sem; ?>" <?= (isset($semester) && $semester === $sem) ? 'selected' : ''; ?>><?= $sem; ?></option>
+            <?php endforeach; ?>
           </select>
+        </div>
       </div>
 
+      <!-- Second Column for Subject -->
       <?php if (!empty($subjects) && $subjects->num_rows > 0): ?>
+        <div class="col-md-6 col-sm-12">
           <div class="mb-3">
-              <label for="subject_id" class="form-label">Select Subject</label>
-              <select id="subject_id" name="subject_id" class="form-select" required>
-                  <option value="">Select Subject</option>
-                  <?php while ($subject = $subjects->fetch_assoc()): ?>
-                      <option value="<?= $subject['id']; ?>"><?= $subject['subject_name']; ?></option>
-                  <?php endwhile; ?>
-              </select>
+            <label for="subject_id" class="form-label">Select Subject</label>
+            <select id="subject_id" name="subject_id" class="form-select" required>
+              <option value="">Select Subject</option>
+              <?php while ($subject = $subjects->fetch_assoc()): ?>
+                  <option value="<?= $subject['id']; ?>"><?= $subject['subject_name']; ?></option>
+              <?php endwhile; ?>
+            </select>
           </div>
+        </div>
       <?php endif; ?>
+    </div>
 
-      <button type="submit" class="btn btn-primary">Load Grade Reports</button>
+    <div class="row">
+      <!-- Full width button for loading reports -->
+      <div class="col-3">
+        <button type="submit" class="btn btn-primary w-100">Load Grade Reports</button>
+      </div>
+    </div>
   </form>
 
   <!-- Grade Report Table -->
   <?php if ($gradeReports && isset($subject_id) && isset($semester)): ?>
-      <table class="table table-bordered mt-4">
-          <thead>
-              <tr>
-                  <th>SL</th>
-                  <th>Name</th>
-                  <th>College ID</th>
-                  <th>Attendance</th>
-                  <th>Total TC</th>
-                  <th>Total PC</th>
-                  <th>Remarks</th>
-                  <th>Actions</th>
-              </tr>
-          </thead>
-          <tbody>
-              <?php $i = 1; ?>
-              <?php while ($report = $gradeReports->fetch_assoc()): ?>
-                  <tr>
-                      <td><?= $i++; ?></td>
-                      <td><?= htmlspecialchars($report['student_name']); ?></td> <!-- Displaying student name -->
-                      <td><?= htmlspecialchars($report['student_id']); ?></td>
-                      <td><?= htmlspecialchars($report['attendance']); ?></td>
-                      <td><?= htmlspecialchars($report['total_tc']); ?></td>
-                      <td><?= htmlspecialchars($report['total_pc']); ?></td>
-                      <td><?= htmlspecialchars($report['remarks']); ?></td>
-                      <td>
-                          <a href="edit_grade_report.php?id=<?= $report['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
-                          <a href="delete_grade_report.php?id=<?= $report['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this report?');">Delete</a>
-                      </td>
-                  </tr>
-              <?php endwhile; ?>
-          </tbody>
+    <div class="table-responsive mt-4">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>SL</th>
+            <th>Name</th>
+            <th>College ID</th>
+            <th>Attendance</th>
+            <th>Total TC</th>
+            <th>Total PC</th>
+            <th>Remarks</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php $i = 1; ?>
+          <?php while ($report = $gradeReports->fetch_assoc()): ?>
+            <tr>
+              <td><?= $i++; ?></td>
+              <td><?= htmlspecialchars($report['student_name']); ?></td> <!-- Displaying student name -->
+              <td><?= htmlspecialchars($report['student_id']); ?></td>
+              <td><?= htmlspecialchars($report['attendance']); ?></td>
+              <td><?= htmlspecialchars($report['total_tc']); ?></td>
+              <td><?= htmlspecialchars($report['total_pc']); ?></td>
+              <td><?= htmlspecialchars($report['remarks']); ?></td>
+              <td>
+                <a href="edit_grade_report.php?id=<?= $report['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
+                <a href="delete_grade_report.php?id=<?= $report['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this report?');">Delete</a>
+              </td>
+            </tr>
+          <?php endwhile; ?>
+        </tbody>
       </table>
+    </div>
   <?php endif; ?>
 </div>
+
 </body>
 </html>
+
 </main>
 <?php require_once './partials/footer.php'; ?>

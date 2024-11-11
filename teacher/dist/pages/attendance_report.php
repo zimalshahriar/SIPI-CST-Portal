@@ -35,11 +35,97 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Attendance Report - SIPI CST Portal</title>
   <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+  <style>
+      /* Global Styles */
+      body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background: #f4f6f9;
+          color: #333;
+      }
+
+      .container {
+          max-width: 900px;
+          margin-top: 5rem;
+          padding: 2rem;
+          background: #ffffff;
+          border-radius: 5px;
+      }
+
+      h2 {
+          font-weight: 600;
+          text-align: center;
+          margin-bottom: 1.5rem;
+          color: #495057;
+      }
+
+      /* Form Styles */
+      .form-label {
+          font-weight: 500;
+          color: #495057;
+      }
+
+      .form-select, .form-control {
+          border-radius: 8px;
+      }
+
+      .btn-primary {
+          background-color: #007bff;
+          border: none;
+          padding: 0.6rem 1.5rem;
+          border-radius: 4px;
+          font-weight: 500;
+          transition: background-color 0.3s ease;
+      }
+
+      .btn-primary:hover {
+          background-color: #007bff;
+      }
+
+      /* Table Styles */
+      .table-container {
+          margin-top: 2rem;
+          overflow-x: auto;
+      }
+
+      table {
+          border-collapse: separate;
+          border-spacing: 0;
+          width: 100%;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      th {
+          background-color: #6c63ff;
+          color: #fff;
+          text-align: center;
+          font-weight: 500;
+      }
+
+      td {
+          text-align: center;
+          padding: 0.75rem;
+      }
+
+      tr:nth-child(even) {
+          background-color: #f8f9fa;
+      }
+
+      /* No Records Found Message */
+      .no-records {
+          margin-top: 2rem;
+          text-align: center;
+          font-size: 1.1rem;
+          color: #888;
+      }
+  </style>
 </head>
 <body>
-<div class="container mt-5">
+<div class="container">
   <h2>Attendance Report</h2>
 
   <form method="POST">
@@ -56,36 +142,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <?php endwhile; ?>
           </select>
       </div>
-      <button type="submit" class="btn btn-primary">View Report</button>
+      <button type="submit" class="btn btn-primary w-40 mt-4">View Report</button>
   </form>
 
   <?php if ($attendanceRecords && $attendanceRecords->num_rows > 0): ?>
-      <h3 class="mt-4">Attendance Records for <?= htmlspecialchars($_POST['date']); ?></h3>
-      <table class="table table-bordered mt-3">
-          <thead>
-              <tr>
-                  <th>Student ID</th>
-                  <th>Student Name</th>
-                  <th>Subject</th>
-                  <th>Status</th>
-              </tr>
-          </thead>
-          <tbody>
-              <?php while ($record = $attendanceRecords->fetch_assoc()): ?>
+      <h3 class="mt-4 text-center">Attendance Records for <?= htmlspecialchars($_POST['date']); ?></h3>
+      <div class="table-container">
+          <table class="table table-bordered mt-3">
+              <thead>
                   <tr>
-                      <td><?= $record['student_id']; ?></td>
-                      <td><?= $record['student_name']; ?></td>
-                      <td><?= $record['subject_name']; ?></td>
-                      <td><?= $record['status']; ?></td>
+                      <th>Student ID</th>
+                      <th>Student Name</th>
+                      <th>Subject</th>
+                      <th>Status</th>
                   </tr>
-              <?php endwhile; ?>
-          </tbody>
-      </table>
+              </thead>
+              <tbody>
+                  <?php while ($record = $attendanceRecords->fetch_assoc()): ?>
+                      <tr>
+                          <td><?= $record['student_id']; ?></td>
+                          <td><?= $record['student_name']; ?></td>
+                          <td><?= $record['subject_name']; ?></td>
+                          <td><?= $record['status']; ?></td>
+                      </tr>
+                  <?php endwhile; ?>
+              </tbody>
+          </table>
+      </div>
   <?php elseif ($_SERVER['REQUEST_METHOD'] === 'POST'): ?>
-      <p class="mt-4">No attendance records found for the selected date and subject.</p>
+      <div class="no-records">No attendance records found for the selected date and subject.</div>
   <?php endif; ?>
 </div>
+
 </body>
 </html>
+
 </main>
 <?php require_once 'partials/footer.php' ?>
