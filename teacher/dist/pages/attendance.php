@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $stmt->execute();
   }
 
-  header('Location: attendance.php?message=Attendance recorded successfully');
+  echo "<script>alert('Attendance recorded successfully'); window.location.href='attendance.php';</script>";
   exit;
 }
 ?>
