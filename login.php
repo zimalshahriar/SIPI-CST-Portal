@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Redirect to the appropriate dashboard
         if ($user['user_type'] === 'student') {
-            header('Location: student/index.php');
+            header('Location: student/dist/pages/announcements.php');
         } elseif ($user['user_type'] === 'teacher') {
             header('Location: teacher/index.php');
         } else {
