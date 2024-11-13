@@ -201,7 +201,7 @@ if (isset($_POST['subject_id']) && isset($_POST['semester'])) {
 </head>
 <body>
 
-<div class="container mt-5">
+<div class="container">
     <h2>Grade Report</h2>
 
     <!-- Form to select semester and subject -->
