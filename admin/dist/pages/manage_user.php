@@ -46,12 +46,13 @@ $result = $conn->query("SELECT * FROM users");
             border-radius: 0px;
             padding: 30px;
             max-width: 100%;
+            animation: fadeIn 0.7s ease;
 
         }
 
         /* Table Styling */
         .table {
-            border-radius: 0px;
+            border-radius: 4px;
             overflow: hidden;
             margin-top: 20px;
         }
@@ -74,7 +75,7 @@ $result = $conn->query("SELECT * FROM users");
 
         /* Button Styling */
         .btn-primary {
-            background-color: #2980b9;
+            background-color: #1d4e89;
             border: none;
             color: #fff;
             border-radius: 25px;
@@ -84,7 +85,7 @@ $result = $conn->query("SELECT * FROM users");
         }
 
         .btn-primary:hover {
-            background-color: #3498db;
+            background-color: #163d6d;
         }
 
         .btn-danger {
@@ -158,7 +159,7 @@ $result = $conn->query("SELECT * FROM users");
     </style>
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="container">
         <h2 class="text-center">Manage Users</h2>
         <table class="table table-bordered">
             <thead>
@@ -194,7 +195,6 @@ $result = $conn->query("SELECT * FROM users");
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
 
 </main>
 <?php require_once 'partials/footer.php' ?>

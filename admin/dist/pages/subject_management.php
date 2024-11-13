@@ -60,14 +60,12 @@ $subjects = $conn->query("SELECT * FROM subjects ORDER BY semester");
             background: #f7f9fc;
             color: #333;
         }
-        .container {
-            max-width: 1100px;
-        }
         .header, .form-container {
             background-color: #ffffff;
             padding: 10px;
             border-radius: 4px;
             margin-bottom: 20px;
+            animation: fadeIn 0.7s ease;
         }
         h2 {
             font-weight: 600;
@@ -82,6 +80,7 @@ $subjects = $conn->query("SELECT * FROM subjects ORDER BY semester");
         }
         .btn-primary:hover, .btn-custom:hover {
             background-color: #163d6d;
+            color: #ffffff;
         }
         .form-control, .form-select {
             background-color: #f7f9fc;
@@ -93,14 +92,15 @@ $subjects = $conn->query("SELECT * FROM subjects ORDER BY semester");
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
-            margin-top: 20px;
+            animation: fadeIn 0.7s ease;
+            margin: auto;
         }
         .card {
             background-color: #ffffff;
             border: none;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 40px;
+            border-radius: 3px;
+            padding: 50px;
             text-align: center;
             position: relative;
         }
@@ -126,7 +126,7 @@ $subjects = $conn->query("SELECT * FROM subjects ORDER BY semester");
     </style>
 </head>
 <body>
-<div class="container mt-5">
+<div class="">
     <div class="form-container">
     <div class="header text-left">
         <h2>Manage Subjects</h2>

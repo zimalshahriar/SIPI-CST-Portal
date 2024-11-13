@@ -36,24 +36,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
-        /* Custom Styles for Premium Look */
+        /* Custom Styles */
         body {
             background-color: #f8f9fa;
             font-family: Arial, sans-serif;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 100%;
             background-color: #fff;
             border-radius: 0px;
             padding: 20px 30px;
-            margin-top: 40px;
+            margin-top: 0px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            animation: fadeIn 0.7s ease;
         }
 
         h2 {
             color: #333;
             font-weight: 700;
-            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            display: grid;
+            grid-template-columns: 1fr;
         }
 
         .form-label {
@@ -69,18 +78,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
+            background-color: #1d4e89;
+            border-color: #1d4e89;
             font-size: 1rem;
             padding: 10px 20px;
             border-radius: 5px;
             font-weight: 600;
+            width: 30%;
+        }
+        .btn-primary:hover{
+            background-color: #1d4e89;
         }
 
-        /* Responsive Styling */
+        /* Responsive Styles */
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .form-group {
+                grid-column: 1 / -1;
+            }
+        }
+
         @media (max-width: 576px) {
             .container {
-                margin-top: 20px;
                 padding: 15px 20px;
             }
             h2 {
@@ -94,8 +116,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h2 class="text-center">Create New Academic Session</h2>
+    <div class="container">
+        <h2>Create New Academic Session</h2>
 
         <?php if (isset($success_message)): ?>
             <div class="alert alert-success"><?php echo $success_message; ?></div>
@@ -103,12 +125,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="alert alert-danger"><?php echo $error_message; ?></div>
         <?php endif; ?>
 
-        <form action="" method="post">
+        <form action="" method="post" class="form-group">
             <div class="mb-3">
                 <label for="session" class="form-label">Session (e.g., 2023-24)</label>
                 <input type="text" class="form-control" id="session" name="session" placeholder="Enter session" required>
             </div>
-            <button type="submit" class="btn btn-primary w-30">Create Session</button>
+            <button type="submit" class="btn btn-primary">Create Session</button>
         </form>
     </div>
 
@@ -116,5 +138,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
 </main>
 <?php require_once 'partials/footer.php' ?>
