@@ -5,6 +5,7 @@ require_once 'partials/navbar.php';
 require_once 'partials/sidebar.php';
 
 ?>
+<main class="app-main">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,7 +87,7 @@ require_once 'partials/sidebar.php';
     <h2 class="text-center">Department Curriculum</h2>
     <div class="container my-5">
       <div class="row row-cols-1 row-cols-md-3 g-4">
-        
+
         <!-- Card 1 -->
         <div class="col">
           <div class="card subject-card">
@@ -184,7 +185,7 @@ require_once 'partials/sidebar.php';
         </div>
 
         <!-- Add additional cards as needed -->
-        
+
       </div>
     </div>
   </div>
@@ -192,7 +193,7 @@ require_once 'partials/sidebar.php';
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
+</main>
 
 <?php require_once 'partials/footer.php' ?>
 

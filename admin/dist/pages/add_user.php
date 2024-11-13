@@ -54,11 +54,13 @@ while ($row = $semester_result->fetch_assoc()) {
       } */
 
       .container {
-
+        display: grid;
           width: 100%;
           padding: 40px;
-          border-radius: 0px;
+          border-radius: 10px;
           animation: fadeIn 0.7s ease;
+          margin-top: 2%;
+          background-color: #ffffff;
       }
 
       h2 {
@@ -216,8 +218,13 @@ while ($row = $semester_result->fetch_assoc()) {
 
           <div id="teacherFields" style="display: none;">
               <div class="form-group">
-                  <input type="text" class="form-control" id="role" name="role" placeholder=" ">
-                  <label for="role">Role</label>
+                  <!-- <input type="text" class="form-control" id="role" name="role" placeholder=" "> -->
+                  <label for="role"></label>
+                  <select class="form-select" id="role" name="role">
+                        <option value="CI">Chief Instructor</option>
+                        <option value="Instructor">Instructor</option>
+                        <option value="Junior Instructor">Junior Instructor</option>
+                    </select>
               </div>
           </div>
 

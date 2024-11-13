@@ -75,145 +75,125 @@ if ($semester_result->num_rows > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Notices</title>
+    <title>Notice Management</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #f4f7fc;
+            background-color: #f4f9ff;
             font-family: 'Poppins', sans-serif;
             color: #333;
         }
 
-        h2 {
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h2 {
             color: #2c3e50;
             font-weight: 600;
-            text-align: center;
-            margin-bottom: 30px;
         }
 
-        .container {
-            margin-top: 0px;
-        }
-
-        .table-container {
+        .notices-container {
             grid-template-columns: 1fr;
             gap: 20px;
         }
 
-        .table {
+        .notice-card {
             background-color: #ffffff;
             border-radius: 2px;
-            overflow: hidden;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            grid-column: 1;
+            padding: 1.5rem;
+            transition: transform 0.2s ease;
         }
 
-        .table thead {
-            background-color: #1abc9c;
-            color: #ffffff;
+        .notice-card:hover {
+            transform: scale(1.02);
         }
 
-        .table thead th {
-            padding: 15px;
-            text-align: center;
-        }
-
-        .table tbody tr {
-            text-align: center;
-        }
-
-        .btn-warning, .btn-danger {
-            font-size: 0.9rem;
-        }
-
-        /* Modal Styles */
-        .modal-content {
-            border-radius: 8px;
-            padding: 20px;
-        }
-
-        .modal-header, .modal-footer {
-            border: none;
-        }
-
-        .modal-header .modal-title {
+        .notice-title {
+            font-size: 1.2rem;
             color: #2c3e50;
             font-weight: 600;
         }
 
-        .btn-primary, .btn-secondary {
-            font-size: 0.9rem;
-        }
-        .btn-success{
-            background-color:#007bff ;
-        }
-        .btn-success:hover{
-            color: #333;
-            background-color: #007bff;
+        .notice-content {
+            color: #555;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
         }
 
-        /* Make the layout responsive */
+        .notice-semester {
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+        .notice-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .notice-tag {
+            background-color: #e7f3ff;
+            color: #007bff;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .action-buttons {
+            margin-top: 1rem;
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Responsive Grid */
         @media (min-width: 768px) {
-            .table-container {
+            .notices-container {
                 grid-template-columns: 1fr 1fr;
             }
         }
 
         @media (min-width: 992px) {
-            .table-container {
+            .notices-container {
                 grid-template-columns: 1fr 1fr 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container notices-container">
+    <div class="header">
         <h2>📢 Manage Notices</h2>
-
-        <?php if (isset($_SESSION['message'])): ?>
-            <script>
-                alert("<?php echo $_SESSION['message']; unset($_SESSION['message']); ?>");
-            </script>
+    </div>
+        <!-- Example of a Notice Card -->
+        <?php if ($result->num_rows > 0): ?>
+            <?php while ($notice = $result->fetch_assoc()): ?>
+                <div class="notice-card">
+                    <div class="notice-title"><?php echo htmlspecialchars($notice['title']); ?></div>
+                    <div class="notice-content"><?php echo nl2br(htmlspecialchars($notice['content'])); ?></div>
+                    <div class="notice-semester">Semester: <?php echo htmlspecialchars($notice['semester']); ?></div>
+                    <div class="notice-tags">
+                        <div class="notice-tag">Notice</div>
+                        <!-- Add more tags here if needed -->
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal"
+                            data-id="<?php echo $notice['id']; ?>"
+                            data-title="<?php echo htmlspecialchars($notice['title']); ?>"
+                            data-content="<?php echo htmlspecialchars($notice['content']); ?>"
+                            data-semester="<?php echo htmlspecialchars($notice['semester']); ?>">Edit</button>
+                        <a href="manage_announcements.php?delete=<?php echo $notice['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                    </div>
+                </div>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <div class="text-center">No notices available</div>
         <?php endif; ?>
-
-        <!-- Notices Table -->
-        <div class="table-container">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Content</th>
-                        <th>Semester</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if ($result->num_rows > 0): ?>
-                        <?php while ($notice = $result->fetch_assoc()): ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($notice['title']); ?></td>
-                                <td><?php echo nl2br(htmlspecialchars($notice['content'])); ?></td>
-                                <td><?php echo htmlspecialchars($notice['semester']); ?></td>
-                                <td>
-                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editModal"
-                                        data-id="<?php echo $notice['id']; ?>"
-                                        data-title="<?php echo htmlspecialchars($notice['title']); ?>"
-                                        data-content="<?php echo htmlspecialchars($notice['content']); ?>"
-                                        data-semester="<?php echo htmlspecialchars($notice['semester']); ?>">Edit</button>
-                                    <a href="manage_announcements.php?delete=<?php echo $notice['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
-                                </td>
-                            </tr>
-                        <?php endwhile; ?>
-                    <?php else: ?>
-                        <tr>
-                            <td colspan="4" class="text-center">No notices available</td>
-                        </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
     </div>
 
     <!-- Edit Modal -->
@@ -259,7 +239,6 @@ if ($semester_result->num_rows > 0) {
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Handle modal data
         var editModal = document.getElementById('editModal');
         editModal.addEventListener('show.bs.modal', function (event) {
             var button = event.relatedTarget;
@@ -268,19 +247,15 @@ if ($semester_result->num_rows > 0) {
             var content = button.getAttribute('data-content');
             var semester = button.getAttribute('data-semester');
 
-            var modalBodyInputTitle = editModal.querySelector('#title');
-            var modalBodyInputContent = editModal.querySelector('#content');
-            var modalBodyInputSemester = editModal.querySelector('#semester');
-            var modalBodyInputId = editModal.querySelector('#noticeId');
-
-            modalBodyInputTitle.value = title;
-            modalBodyInputContent.value = content;
-            modalBodyInputSemester.value = semester;
-            modalBodyInputId.value = id;
+            editModal.querySelector('#title').value = title;
+            editModal.querySelector('#content').value = content;
+            editModal.querySelector('#semester').value = semester;
+            editModal.querySelector('#noticeId').value = id;
         });
     </script>
 </body>
 </html>
+
 
 </main>
 <?php require_once 'partials/footer.php' ?>
