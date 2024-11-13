@@ -24,7 +24,6 @@ require_once 'partials/sidebar.php';
       <table class="table rounded table-hover">
         <thead class="p-2">
           <tr class="text-center table-primary">
-            <th scope="col">SL</th>
             <th scope="col">SUBJECT</th>
             <th scope="col">DAY</th>
             <th scope="col">START TIME</th>
@@ -36,7 +35,6 @@ require_once 'partials/sidebar.php';
   
         <tbody>
           <tr class="text-center">
-            <th scope="row">1</th>
             <td>English</td>
             <td>Monday</td>
             <td>06:10</td>
@@ -46,7 +44,6 @@ require_once 'partials/sidebar.php';
           </tr>
   
           <tr class="text-center">
-            <th scope="row">2</th>
             <td>Bangla</td>
             <td>Tuesday</td>
             <td>07:10</td>
@@ -56,7 +53,6 @@ require_once 'partials/sidebar.php';
           </tr>
   
           <tr class="text-center">
-            <th scope="row">3</th>
             <td>Math</td>
             <td>Wednesday</td>
             <td>09:10</td>
