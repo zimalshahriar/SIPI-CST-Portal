@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2024 at 08:31 AM
+-- Generation Time: Nov 14, 2024 at 10:40 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `sipi_cst_portal`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `announcements`
+--
+
+CREATE TABLE `announcements` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` text DEFAULT NULL,
+  `file_path` varchar(255) DEFAULT NULL,
+  `semester` enum('All Semester','1st','2nd','3rd','4th','5th','6th','7th','8th') NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `announcements`
+--
+
+INSERT INTO `announcements` (`id`, `title`, `content`, `file_path`, `semester`, `created_at`) VALUES
+(5, 'Test', NULL, '../uploads/6735a34c0a36c-sodapdf-converted (1).pdf', 'All Semester', '2024-11-14 07:14:20'),
+(9, 'PDF', NULL, '../uploads/6735a46b2fe03-sodapdf-converted.pdf', '7th', '2024-11-14 07:19:07'),
+(10, 'test-02', '214444cshddiakdoiuj', NULL, '8th', '2024-11-14 09:37:17');
 
 -- --------------------------------------------------------
 
@@ -98,30 +122,7 @@ CREATE TABLE `grade_reports` (
 --
 
 INSERT INTO `grade_reports` (`id`, `student_id`, `subject_id`, `semester`, `attendance`, `mid_exam`, `class_test`, `quiz_test`, `performance_assessment`, `assignment_homework`, `total_tc`, `experiment`, `homework`, `error`, `evaluation`, `discussion_solution`, `additional_hours`, `total_pc`, `remarks`) VALUES
-(3, 11, 1, '7th', 86.00, 18.50, 3.00, 4.00, 4.00, 4.00, 33.50, 4.00, 4.00, 4.00, 4.00, 4.00, 4.00, 24.00, '3.4');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `notices`
---
-
-CREATE TABLE `notices` (
-  `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `content` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `semester` enum('1st','2nd','3rd','4th','5th','6th','7th','8th','All Semester') NOT NULL DEFAULT 'All Semester'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `notices`
---
-
-INSERT INTO `notices` (`id`, `title`, `content`, `created_at`, `semester`) VALUES
-(28, '3rd', 'for 3rd', '2024-10-27 11:41:11', '8th'),
-(29, 'all', 'all semester', '2024-10-27 16:05:20', 'All Semester'),
-(30, 'Lagabo', 'Sob CST student ra mile Sourav er bou ke lagabo', '2024-10-28 06:11:49', 'All Semester');
+(4, 11, 1, '7th', 50.00, 20.00, 4.00, 4.00, 4.00, 4.00, 36.00, 4.00, 4.00, 4.00, 4.00, 4.00, 5.00, 25.00, 'Good');
 
 -- --------------------------------------------------------
 
@@ -139,6 +140,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `session`) VALUES
+(2, '2020-21'),
 (1, '2021-22');
 
 -- --------------------------------------------------------
@@ -192,11 +194,19 @@ INSERT INTO `users` (`id`, `user_id`, `name`, `email`, `password`, `user_type`, 
 (8, 'sourov', 'Sourov Kumar', 'sourovkuamr@gmail.com', '$2y$10$61fcDzCuenqPOfWcK/023e7Qs0GuWJEi4ns.F4xUg.ODVt2xE3ezK', 'admin', NULL, NULL, NULL, 'logo.jpg', '2024-10-25 19:49:13'),
 (9, 'teacher-1', 'Sourov Sarker', 'sourovsarker-21ia@dipti.com.bd', '$2y$10$luGze56bhGnYoV3r6fCuFuFuwv266POsBsbAQm.If.B7b0wghqqcW', 'teacher', NULL, NULL, 'CI', '', '2024-10-27 05:17:33'),
 (10, 'student-1', 'Sourov Sarker', 'sourovsarker-21ia@dipti.com.bd', '$2y$10$KulKopoP5l60K392GELmZu45wZnXTXLMsYkL/JArGCkMkd31UpkAC', 'student', '2021-22', '8th', NULL, '', '2024-10-27 06:28:37'),
-(11, 'nauijdi', 'daw', 'ajhnd@djkd.cc', '$2y$10$bJ1NewAVxrZ/w68DJc1uBuRtRl2Og5J16sbnNNWBehheWuQ.jmRMa', 'student', '2021-22', '7th', NULL, '', '2024-10-28 05:30:41');
+(11, 'nauijdi', 'daw', 'ajhnd@djkd.cc', '$2y$10$bJ1NewAVxrZ/w68DJc1uBuRtRl2Og5J16sbnNNWBehheWuQ.jmRMa', 'student', '2021-22', '7th', NULL, '', '2024-10-28 05:30:41'),
+(12, '281/20 CMT-67', 'Shahriar Zim', 'sz.zim2050@gmail.com', '$2y$10$YkFcruvhV8jGkVZV3rQB9O/ITAj2DWcYAcRsETf9Jw57Gu1bV2HwO', 'student', '2020-21', '8th', NULL, '', '2024-11-14 05:33:36'),
+(14, '000/00 CST-Demo', 'Demo', 'demo123@email.com', '$2y$10$w0MmYIzfR9A.LNgAvKXyouDPbPjSovxjSc23Fv2p.8kmi0rv8PJru', 'student', '2021-22', '5th', NULL, '', '2024-11-14 09:35:34');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `announcements`
+--
+ALTER TABLE `announcements`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `attendance`
@@ -222,12 +232,6 @@ ALTER TABLE `grade_reports`
   ADD KEY `subject_id` (`subject_id`);
 
 --
--- Indexes for table `notices`
---
-ALTER TABLE `notices`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `sessions`
 --
 ALTER TABLE `sessions`
@@ -251,6 +255,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `announcements`
+--
+ALTER TABLE `announcements`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
@@ -266,19 +276,13 @@ ALTER TABLE `class_schedule`
 -- AUTO_INCREMENT for table `grade_reports`
 --
 ALTER TABLE `grade_reports`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `notices`
---
-ALTER TABLE `notices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sessions`
 --
 ALTER TABLE `sessions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `subjects`
@@ -290,7 +294,7 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables

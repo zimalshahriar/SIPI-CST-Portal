@@ -17,8 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['user_type'] = $user['user_type'];
         $_SESSION['name'] = $user['name'];
-        $_SESSION['email'] = $user['email'];  // Assuming $user['email'] is fetched from the database
-        $_SESSION['photo'] = $user['photo'];  // Assuming this is for the profile photo
+        $_SESSION['email'] = $user['email'];
+        $_SESSION['photo'] = $user['photo'];
+        $_SESSION['semester'] = $user['semester'];
 
         // Redirect to the appropriate dashboard
         if ($user['user_type'] === 'student') {
@@ -54,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['name'] = $user['name'];
         $_SESSION['email'] = $user['email'];  // Assuming $user['email'] is fetched from the database
         $_SESSION['photo'] = $user['photo'];  // Assuming this is for the profile photo
+        $_SESSION['semester'] = $user['semester'];
 
         // Redirect to the appropriate dashboard
         if ($user['user_type'] === 'student') {
