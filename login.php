@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['email'] = $user['email'];
         $_SESSION['photo'] = $user['photo'];
         $_SESSION['semester'] = $user['semester'];
+        $_SESSION['id'] = $user['id'];
 
         // Redirect to the appropriate dashboard
         if ($user['user_type'] === 'student') {
