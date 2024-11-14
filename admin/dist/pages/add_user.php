@@ -208,7 +208,9 @@ while ($row = $semester_result->fetch_assoc()) {
               <div class="form-group">
                   <select id="semester" name="semester" class="form-control">
                       <option value="" selected disabled>Select Semester</option>
-                      <?php foreach ($semesters as $semester): ?>
+                      <?php 
+                      $semesters = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'];
+                      foreach ($semesters as $semester): ?>
                           <option value="<?= htmlspecialchars($semester) ?>"><?= htmlspecialchars($semester) ?></option>
                       <?php endforeach; ?>
                   </select>
