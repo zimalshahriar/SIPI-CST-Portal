@@ -3,7 +3,6 @@ session_start();
 require_once 'partials/header.php';
 require_once 'partials/navbar.php';
 require_once 'partials/sidebar.php';
-
 ?>
 <main class="app-main">
 <!DOCTYPE html>
@@ -11,194 +10,195 @@ require_once 'partials/sidebar.php';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Department Curriculum</title>
+  <title>Book Collection</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body{
-      background: linear-gradient(to left, #f6fcfb, #f9fcff );
-    }
-    .subject-card {
-      position: relative;
-      overflow: hidden;
-      border: none;
-      border-radius: 15px;
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-      width: 100%;
-      height: 100%;
-      
+    body {
+      background: #f8f9fa;
+      font-family: 'Arial', sans-serif;
     }
 
-    .subject-card:hover {
+    .book-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 400px; /* Set fixed height to mimic a book */
+      width: 100%; /* Let the card take up 100% width of its parent */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .book-card:hover {
       transform: translateY(-10px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 
-    .subject-card img {
+    .book-card img {
       width: 100%;
-      height: 200px;
+      height: 100%;
       object-fit: cover;
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
+      border-radius: 10px;
     }
 
-    .subject-card .card-body {
-      padding: 20px;
-    }
-
-    .subject-card .subject-info {
+    .book-card .card-body {
       position: absolute;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      width: 100%;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
       padding: 15px;
+      border-radius: 0 0 10px 10px;
       opacity: 0;
-      transform: translateY(100%);
-      transition: opacity 0.3s, transform 0.3s;
+      transition: opacity 0.3s ease-in-out;
     }
 
-    .subject-card:hover .subject-info {
+    .book-card:hover .card-body {
       opacity: 1;
-      transform: translateY(0);
+    }
+
+    .book-card .card-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    .book-card .card-text {
+      font-size: 0.9rem;
+      color: #dcdcdc;
     }
 
     .content-wrapper {
-      padding: 20px;
+      padding: 40px;
     }
 
+    .book-container {
+      margin-top: 30px;
+    }
+
+    .book-container h2 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+  
+    .book-container .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px; 
+    }
+
+    .book-container .col {
+      flex: 1;
+      max-width: 300px; 
+      min-width: 250px; 
+    }
+
+    /* Responsive for mobile */
     @media (max-width: 768px) {
-      .content-wrapper {
-        margin-left: 0;
+      .book-card img {
+        height: 300px;
       }
     }
-
+    
     @media (max-width: 576px) {
-      .subject-card img {
-        height: 150px;
-      }
-
-      .subject-info {
-        position: relative;
-        background: rgba(0, 0, 0, 0.8);
-        padding: 10px;
-        bottom: unset;
+      .book-card img {
+        height: 200px; 
       }
     }
   </style>
 </head>
 <body>
-  <div>
-    <h2 class="text-center">Department Curriculum</h2>
-    <div class=" m-5">
+  <div class="content-wrapper">
+    <div class="book-container">
+      <h2>Our Book Collection</h2>
       <div class="row row-cols-1 row-cols-md-3 g-4">
-
-        <!-- Card 1 -->
+        <!-- Book Card 1 -->
         <div class="col">
-          <div class="card subject-card">
-            <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
+          <div class="card book-card">
+            <img src="../../../image/book.jpg" class="card-img-top" alt="Book Cover 1">
             <div class="card-body">
-              <h5 class="card-title">Subject 1</h5>
-              <p class="card-text">Introduction to the basics of Subject 1.</p>
-            </div>
-            <div class="subject-info">
-              <p><strong>Credits:</strong> 3</p>
-              <p><strong>Faculty:</strong> Dr. ABC</p>
-              <p><strong>Schedule:</strong> Mon/Wed/Fri, 10:00 AM - 12:00 PM</p>
+              <h5 class="card-title">system analysis and design</h5>
+              <p class="card-text">Description</p>
             </div>
           </div>
         </div>
 
-        <!-- Card 2 -->
+        <!-- Book Card 2 -->
         <div class="col">
-          <div class="card subject-card">
-            <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
+          <div class="card book-card">
+            <img src="../../../image/book2.jpg" class="card-img-top" alt="Book Cover 2">
             <div class="card-body">
-              <h5 class="card-title">Subject 2</h5>
-              <p class="card-text">Intermediate concepts in Subject 2.</p>
-            </div>
-            <div class="subject-info">
-              <p><strong>Credits:</strong> 4</p>
-              <p><strong>Faculty:</strong> Prof. XYZ</p>
-              <p><strong>Schedule:</strong> Tue/Thu, 2:00 PM - 4:00 PM</p>
+              <h5 class="card-title">network administration and service</h5>
+              <p class="card-text">Description</p>
             </div>
           </div>
         </div>
 
-        <!-- Card 3 -->
+        <!-- Book Card 3 -->
         <div class="col">
-          <div class="card subject-card">
-            <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
+          <div class="card book-card">
+            <img src="../../../image/book3.jpg" class="card-img-top" alt="Book Cover 3">
             <div class="card-body">
-              <h5 class="card-title">Subject 3</h5>
-              <p class="card-text">Advanced study in Subject 3.</p>
-            </div>
-            <div class="subject-info">
-              <p><strong>Credits:</strong> 4</p>
-              <p><strong>Faculty:</strong> Dr. DEF</p>
-              <p><strong>Schedule:</strong> Mon/Wed/Fri, 1:00 PM - 3:00 PM</p>
+              <h5 class="card-title">Apps Development Project</h5>
+              <p class="card-text">Description</p>
             </div>
           </div>
         </div>
 
-        <!-- Card 4 -->
+        <!-- Book Card 4 -->
         <div class="col">
-          <div class="card subject-card">
-            <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
+          <div class="card book-card">
+            <img src="../../../image/book4.jpg" class="card-img-top" alt="Book Cover 4">
             <div class="card-body">
-              <h5 class="card-title">Subject 4</h5>
-              <p class="card-text">Explorative approach in Subject 4.</p>
-            </div>
-            <div class="subject-info">
-              <p><strong>Credits:</strong> 4</p>
-              <p><strong>Faculty:</strong> Dr. GHI</p>
-              <p><strong>Schedule:</strong> Tue/Thu, 10:00 AM - 12:00 PM</p>
+              <h5 class="card-title">Cyber Security & Ethics</h5>
+              <p class="card-text">Description</p>
             </div>
           </div>
         </div>
 
-        <!-- Card 5 -->
+        <!-- Book Card 5 -->
         <div class="col">
-          <div class="card subject-card">
-            <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
+          <div class="card book-card">
+            <img src="../../../image/book5.jpg" class="card-img-top" alt="Book Cover 5">
             <div class="card-body">
-              <h5 class="card-title">Subject 4</h5>
-              <p class="card-text">Explorative approach in Subject 4.</p>
+              <h5 class="card-title">Innovation & Entrepreneurship</h5>
+              <p class="card-text">Description</p>
             </div>
-            <div class="subject-info">
-              <p><strong>Credits:</strong> 4</p>
-              <p><strong>Faculty:</strong> Dr. GHI</p>
-              <p><strong>Schedule:</strong> Tue/Thu, 10:00 AM - 12:00 PM</p>
+          </div>
+        </div>
+<!-- Book Card 6 -->
+        <div class="col">
+          <div class="card book-card">
+            <img src="../../../image/book5.jpg" class="card-img-top" alt="Book Cover 5">
+            <div class="card-body">
+              <h5 class="card-title">Network Security System</h5>
+              <p class="card-text">Des
+                cription
+              </p>
             </div>
           </div>
         </div>
 
-         <!-- Card 6 -->
-         <div class="col">
-          <div class="card subject-card">
-            <img src="https://via.placeholder.com/350x300" class="card-img-top" alt="Subject Image">
+        <!-- Book Card 7 -->
+        <div class="col">
+          <div class="card book-card">
+            <img src="../../../image/book6.jpg" class="card-img-top" alt="Book Cover 6">
             <div class="card-body">
-              <h5 class="card-title">Subject 4</h5>
-              <p class="card-text">Explorative approach in Subject 4.</p>
-            </div>
-            <div class="subject-info">
-              <p><strong>Credits:</strong> 4</p>
-              <p><strong>Faculty:</strong> Dr. GHI</p>
-              <p><strong>Schedule:</strong> Tue/Thu, 10:00 AM - 12:00 PM</p>
+              <h5 class="card-title">E-commerce and CMS</h5>
+              <p class="card-text">Description</p>
             </div>
           </div>
         </div>
-
-        <!-- Add additional cards as needed -->
-
       </div>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
 </main>
 
-<?php require_once 'partials/footer.php' ?>
-
-<?php require_once 'partials/footer.php' ?>
+<?php require_once 'partials/footer.php'; ?>
