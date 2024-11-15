@@ -12,7 +12,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="announcements.php" class="nav-link">
+                    <a href="add_announcement.php" class="nav-link">
                     <i class="nav-icon bi bi-megaphone"></i>
                     <p>Announcements</p>
                     </a>

@@ -69,7 +69,7 @@ require_once 'partials/sidebar.php';
           </div>
         </div>
       </div>
-      
+
       <!-- Teacher Card 2 -->
       <div class="col-md-4 mb-4">
         <div class="card teacher-card text-center p-3">
@@ -83,7 +83,7 @@ require_once 'partials/sidebar.php';
           </div>
         </div>
       </div>
-      
+
       <!-- Teacher Card 3 -->
       <div class="col-md-4 mb-4">
         <div class="card teacher-card text-center p-3">
@@ -118,6 +118,5 @@ require_once 'partials/sidebar.php';
   </script>
 </body>
 </html>
-
 </main>
 <?php require_once 'partials/footer.php' ?>

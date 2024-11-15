@@ -20,10 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['email'] = $user['email'];
         $_SESSION['photo'] = $user['photo'];
         $_SESSION['semester'] = $user['semester'];
+        $_SESSION['id'] = $user['id'];
 
         // Redirect to the appropriate dashboard
         if ($user['user_type'] === 'student') {
-            header('Location: student/index.php');
+            header('Location: student/view_announcements.php');
         } elseif ($user['user_type'] === 'teacher') {
             header('Location: teacher/index.php');
         } else {
@@ -59,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Redirect to the appropriate dashboard
         if ($user['user_type'] === 'student') {
-            header('Location: student/dist/pages/announcements.php');
+            header('Location: student/dist/pages/view_announcements.php');
         } elseif ($user['user_type'] === 'teacher') {
             header('Location: teacher/index.php');
         } else {

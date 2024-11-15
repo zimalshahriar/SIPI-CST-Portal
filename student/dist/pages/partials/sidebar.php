@@ -5,9 +5,9 @@
             <div class="sidebar-wrapper">
                 <nav class="mt-2"> <!--begin::Sidebar Menu-->
                   <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
-                    
+
                     <li class="nav-item">
-                    <a href="announcements.php" class="nav-link">
+                    <a href="view_announcements.php" class="nav-link">
                     <i class="nav-icon bi bi-megaphone"></i>
                     <p>Announcements</p>
                     </a>
@@ -18,19 +18,19 @@
                     <p>Class Schedule</p>
                     </a>
                     </li>
-                    
+
                     <li class="nav-item">
-                    <a href="grade_report.php" class="nav-link">
+                    <a href="grade_reports.php" class="nav-link">
                     <i class="nav-icon bi bi-graph-up"></i>
                     <p>Grade Report</p>
                     </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                     <a href="pay_tuition.php" class="nav-link">
                     <i class="nav-icon bi bi-cash"></i>
                     <p>Pay Tuition</p>
                     </a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                     <a href="teachers.php" class="nav-link">
                     <i class="nav-icon bi bi-person-badge"></i>

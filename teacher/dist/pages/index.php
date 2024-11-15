@@ -14,7 +14,7 @@ if (!$total_students_result) {
 }
 $total_students = $total_students_result->fetch_assoc()['total_students'];
 
-$total_notices_result = $conn->query("SELECT COUNT(*) AS total_notices FROM notices");
+$total_notices_result = $conn->query("SELECT COUNT(*) AS total_notices FROM announcements");
 if (!$total_notices_result) {
   die("Query failed: " . $conn->error);
 }

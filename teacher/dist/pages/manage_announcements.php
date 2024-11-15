@@ -3,259 +3,65 @@ session_start();
 require_once 'partials/header.php';
 require_once 'partials/navbar.php';
 require_once 'partials/sidebar.php';
-ob_start(); // Start output buffering
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
-    $id = $_POST['id'];
-    $title = trim($_POST['title']);
-    $content = trim($_POST['content']);
-    $semester = trim($_POST['semester']);
 
-    if (!empty($title) && !empty($content) && !empty($semester)) {
-        $sql = "UPDATE notices SET title=?, content=?, semester=? WHERE id=?";
-        if ($stmt = $conn->prepare($sql)) {
-            $stmt->bind_param("sssi", $title, $content, $semester, $id);
-            $stmt->execute();
-            $_SESSION['message'] = "Notice updated successfully!";
-            $stmt->close();
-        }
-    } else {
-        $_SESSION['message'] = "All fields are required!";
-    }
-    echo "<script>window.location.href='manage_announcements.php';</script>";
+// Ensure the user is a teacher
+if ($_SESSION['user_type'] !== 'teacher') {
+    header('Location: index.php');
     exit;
 }
 
-// Handle Delete
-if (isset($_GET['delete'])) {
-    $id = $_GET['delete'];
-    $sql = "DELETE FROM notices WHERE id=?";
-    if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $_SESSION['message'] = "Notice deleted successfully!";
-        $stmt->close();
-    }
-    echo "<script>window.location.href='manage_announcements.php';</script>";
-    exit;
-}
+// Fetch announcements published by this teacher
+$announcements = $conn->query("SELECT * FROM announcements ORDER BY created_at DESC");
 
-// Fetch Notices
-$sql = "SELECT * FROM notices ORDER BY created_at DESC";
-$result = $conn->query($sql);
-
-// Fetch a specific notice for editing
-$edit = null;
-if (isset($_GET['edit'])) {
-    $id = $_GET['edit'];
-    $sql = "SELECT * FROM notices WHERE id=?";
-    if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $edit = $result->fetch_assoc();
-        $stmt->close();
-    }
-}
-
-// Fetch Semesters from Database
-$sql_semesters = "SELECT DISTINCT semester FROM notices"; // Adjust this query based on your semester logic
-$semester_result = $conn->query($sql_semesters);
-$semesters = [];
-if ($semester_result->num_rows > 0) {
-    while ($row = $semester_result->fetch_assoc()) {
-        $semesters[] = $row['semester'];
-    }
-} else {
-
-}
 ?>
 <main class="app-main">
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notice Management</title>
+    <title>Manage Announcements - SIPI CST Portal</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f4f9ff;
-            font-family: 'Poppins', sans-serif;
-            color: #333;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .header h2 {
-            color: #2c3e50;
-            font-weight: 600;
-        }
-
-        .notices-container {
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        .notice-card {
-            background-color: #ffffff;
-            border-radius: 2px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            transition: transform 0.2s ease;
-        }
-
-        .notice-card:hover {
-            transform: scale(1.02);
-        }
-
-        .notice-title {
-            font-size: 1.2rem;
-            color: #2c3e50;
-            font-weight: 600;
-        }
-
-        .notice-content {
-            color: #555;
-            margin: 0.5rem 0;
-            font-size: 0.95rem;
-        }
-
-        .notice-semester {
-            font-size: 0.9rem;
-            color: #6c757d;
-            font-weight: 500;
-        }
-
-        .notice-tags {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .notice-tag {
-            background-color: #e7f3ff;
-            color: #007bff;
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .action-buttons {
-            margin-top: 1rem;
-            display: flex;
-            gap: 10px;
-        }
-
-        /* Responsive Grid */
-        @media (min-width: 768px) {
-            .notices-container {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (min-width: 992px) {
-            .notices-container {
-                grid-template-columns: 1fr 1fr 1fr;
-            }
-        }
-    </style>
 </head>
 <body>
-    <div class="container notices-container">
-    <div class="header">
-        <h2>📢 Manage Notices</h2>
-    </div>
-        <!-- Example of a Notice Card -->
-        <?php if ($result->num_rows > 0): ?>
-            <?php while ($notice = $result->fetch_assoc()): ?>
-                <div class="notice-card">
-                    <div class="notice-title"><?php echo htmlspecialchars($notice['title']); ?></div>
-                    <div class="notice-content"><?php echo nl2br(htmlspecialchars($notice['content'])); ?></div>
-                    <div class="notice-semester">Semester: <?php echo htmlspecialchars($notice['semester']); ?></div>
-                    <div class="notice-tags">
-                        <div class="notice-tag">Notice</div>
-                        <!-- Add more tags here if needed -->
-                    </div>
-                    <div class="action-buttons">
-                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal"
-                            data-id="<?php echo $notice['id']; ?>"
-                            data-title="<?php echo htmlspecialchars($notice['title']); ?>"
-                            data-content="<?php echo htmlspecialchars($notice['content']); ?>"
-                            data-semester="<?php echo htmlspecialchars($notice['semester']); ?>">Edit</button>
-                        <a href="manage_announcements.php?delete=<?php echo $notice['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
-                    </div>
-                </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <div class="text-center">No notices available</div>
-        <?php endif; ?>
-    </div>
+<div class="container mt-5">
+    <h2>Manage Announcements</h2>
 
-    <!-- Edit Modal -->
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form action="manage_announcements.php" method="post">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Edit Notice</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <input type="hidden" name="id" id="noticeId">
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="title" name="title" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="content" class="form-label">Content</label>
-                            <textarea class="form-control" id="content" name="content" rows="4" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="semester" class="form-label">Semester</label>
-                            <select class="form-select" id="semester" name="semester" required>
-                                <option value="" disabled selected>Select a semester</option>
-                                <?php foreach ($semesters as $semester): ?>
-                                    <option value="<?php echo htmlspecialchars($semester); ?>">
-                                        <?php echo htmlspecialchars($semester); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="update">Save changes</button>
-                    </div>
-                </form>
-            </div>
+    <?php if (isset($_SESSION['message'])): ?>
+        <div class="alert alert-success">
+            <?= $_SESSION['message']; unset($_SESSION['message']); ?>
         </div>
-    </div>
+    <?php endif; ?>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        var editModal = document.getElementById('editModal');
-        editModal.addEventListener('show.bs.modal', function (event) {
-            var button = event.relatedTarget;
-            var id = button.getAttribute('data-id');
-            var title = button.getAttribute('data-title');
-            var content = button.getAttribute('data-content');
-            var semester = button.getAttribute('data-semester');
-
-            editModal.querySelector('#title').value = title;
-            editModal.querySelector('#content').value = content;
-            editModal.querySelector('#semester').value = semester;
-            editModal.querySelector('#noticeId').value = id;
-        });
-    </script>
+    <!-- Announcements Table -->
+    <table class="table table-bordered mt-4">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Semester</th>
+                <th>Type</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php while ($announcement = $announcements->fetch_assoc()): ?>
+                <tr>
+                    <td><?= htmlspecialchars($announcement['title']); ?></td>
+                    <td><?= htmlspecialchars($announcement['semester']); ?></td>
+                    <td><?= isset($announcement['file_path']) ? 'PDF' : 'Text'; ?></td>
+                    <td><?= htmlspecialchars($announcement['created_at']); ?></td>
+                    <td>
+                        <a href="edit_announcement.php?id=<?= $announcement['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="delete_announcement.php?id=<?= $announcement['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this announcement?');">Delete</a>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
-
-
 </main>
-<?php require_once 'partials/footer.php' ?>
+<?php
+require_once 'partials/footer.php';
+?>
