@@ -42,7 +42,7 @@ if (!$total_sessions_result) {
 $total_sessions = $total_sessions_result->fetch_assoc()['total_sessions'];
 
 // Fetch total notices
-$total_notices_result = $conn->query("SELECT COUNT(*) AS total_notices FROM notices");
+$total_notices_result = $conn->query("SELECT COUNT(*) AS total_notices FROM announcements");
 if (!$total_notices_result) {
     die("Query failed (Total Notices): " . $conn->error);
 }
