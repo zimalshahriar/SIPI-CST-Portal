@@ -43,13 +43,16 @@ if (isset($_POST['subject_id']) && isset($_POST['semester'])) {
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: #f0f4f7;
+            background: linear-gradient(to left, #f6fcfb, #f9fcff );
             color: #333;
         }
 
         .container {
-            max-width: 1200px;
-            margin-top: 0px;
+            max-width: 800px;
+            margin-top: 6rem;
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 30px;
         }
 
         h2 {
@@ -63,7 +66,7 @@ if (isset($_POST['subject_id']) && isset($_POST['semester'])) {
         /* Form Controls */
         .form-select, .form-control {
             border-radius: 8px;
-            padding: 10px;
+            padding: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border: 1px solid #ccc;
             transition: all 0.3s ease;
@@ -111,7 +114,7 @@ if (isset($_POST['subject_id']) && isset($_POST['semester'])) {
         }
 
         th, td {
-            padding: 12px;
+            padding: 15px;
             text-align: center;
             border: 1px solid #ddd;
             background: #fff;
@@ -125,7 +128,7 @@ if (isset($_POST['subject_id']) && isset($_POST['semester'])) {
         }
 
         td input {
-            width: 60px;
+            width: 70px;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 2px;

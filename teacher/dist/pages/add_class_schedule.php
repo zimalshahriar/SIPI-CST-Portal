@@ -65,7 +65,7 @@ ob_end_flush(); // End output buffering and flush output
             padding: 41px;
             width: 100%;
             max-width: 1500px;
-            background: #fff;
+            background: linear-gradient(to left, #f6fcfb, #f9fcff );
         }
 
         h2 {
@@ -87,7 +87,7 @@ ob_end_flush(); // End output buffering and flush output
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 1.5rem;
-            background-color: #f9f9f9;
+            background-color: #fff;
         }
 
         .form-section h3 {
@@ -140,7 +140,7 @@ ob_end_flush(); // End output buffering and flush output
         }
 
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: #007bff;
         }
 
         /* Responsive Design */

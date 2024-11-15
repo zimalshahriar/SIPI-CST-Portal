@@ -90,8 +90,102 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Announcement - SIPI CST Portal</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to bottom, #e6f2ff, #ffffff);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1300px;
+            background: #f9fcff;
+            padding: 5rem;
+            border-radius: 0px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            height: 93vh;
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 2rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-select,
+        .form-control {
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
+
+        .form-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-container .mb-3 {
+            grid-column: span 2;
+        }
+
+        #text-fields,
+        #pdf-fields {
+            display: none;
+            grid-column: span 2;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button[type="submit"]:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                grid-template-columns: 1fr;
+            }
+
+            .form-container .mb-3 {
+                grid-column: span 1;
+            }
+
+            button[type="submit"] {
+                width: 100%;
+            }
+        }
+    </style>
     <script>
         function toggleAnnouncementFields() {
             var announcementType = document.querySelector('input[name="announcement_type"]:checked').value;
@@ -101,29 +195,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </script>
 </head>
 <body onload="toggleAnnouncementFields()">
-<div class="container mt-5">
+<div class="container">
     <h2>Edit Announcement</h2>
     <form method="POST" enctype="multipart/form-data">
-        <div class="mb-3">
-            <label for="semester" class="form-label">Select Semester</label>
-            <select id="semester" name="semester" class="form-select" required>
-                <option value="All Semester" <?= ($semester == 'All Semester') ? 'selected' : ''; ?>>All Semester</option>
-                <?php for ($i = 1; $i <= 8; $i++): ?>
-                    <option value="<?= $i; ?>th" <?= ($semester == "{$i}th") ? 'selected' : ''; ?>><?= $i; ?>th</option>
-                <?php endfor; ?>
-            </select>
+        <div class="form-container">
+            <div class="mb-3">
+                <label for="semester" class="form-label">Select Semester</label>
+                <select id="semester" name="semester" class="form-select" required>
+                    <option value="All Semester" <?= ($semester == 'All Semester') ? 'selected' : ''; ?>>All Semester</option>
+                    <?php for ($i = 1; $i <= 8; $i++): ?>
+                        <option value="<?= $i; ?>th" <?= ($semester == "{$i}th") ? 'selected' : ''; ?>><?= $i; ?>th</option>
+                    <?php endfor; ?>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Announcement Type</label><br>
+                <input type="radio" id="text" name="announcement_type" value="text" onclick="toggleAnnouncementFields()" <?= ($announcementType === 'text') ? 'checked' : ''; ?>>
+                <label for="text">Text</label>
+
+                <input type="radio" id="pdf" name="announcement_type" value="pdf" onclick="toggleAnnouncementFields()" <?= ($announcementType === 'pdf') ? 'checked' : ''; ?>>
+                <label for="pdf">PDF</label>
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label class="form-label">Announcement Type</label><br>
-            <input type="radio" id="text" name="announcement_type" value="text" onclick="toggleAnnouncementFields()" <?= ($announcementType === 'text') ? 'checked' : ''; ?>>
-            <label for="text">Text</label>
-
-            <input type="radio" id="pdf" name="announcement_type" value="pdf" onclick="toggleAnnouncementFields()" <?= ($announcementType === 'pdf') ? 'checked' : ''; ?>>
-            <label for="pdf">PDF</label>
-        </div>
-
-        <div id="text-fields" style="display: none;">
+        <div id="text-fields">
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" name="title" id="title" class="form-control" required value="<?= htmlspecialchars($title); ?>">
@@ -134,7 +230,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
 
-        <div id="pdf-fields" style="display: none;">
+        <div id="pdf-fields">
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" name="title" id="title" class="form-control" required value="<?= htmlspecialchars($title); ?>">
@@ -153,5 +249,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </div>
 </body>
 </html>
+
 </main>
 <?php require_once 'partials/footer.php' ?>

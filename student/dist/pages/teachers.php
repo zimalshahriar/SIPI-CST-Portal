@@ -13,6 +13,14 @@ require_once 'partials/sidebar.php';
   <title>Teachers Section</title>
   <link href="../../../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <style>
+
+      .container{
+        background: linear-gradient(to left, #f6fcfb, #f9fcff );
+        height: 94vh;
+        border-radius: 0px;
+        max-width: 1300px;
+
+      }
     /* Additional Custom CSS */
     .title {
       text-align: center;
@@ -21,7 +29,7 @@ require_once 'partials/sidebar.php';
       font-family: 'Times New Roman', Times, serif;
     }
     .teacher-card img {
-      border-radius: 50%;
+      border-radius: 30%;
       width: 100px;
       height: 100px;
       object-fit: cover;
@@ -53,7 +61,7 @@ require_once 'partials/sidebar.php';
   </style>
 </head>
 <body>
-  <div class="container my-5">
+  <div class="container">
     <h2 class="title">Our Department Teachers</h2>
     <div class="row">
       <!-- Teacher Card 1 -->

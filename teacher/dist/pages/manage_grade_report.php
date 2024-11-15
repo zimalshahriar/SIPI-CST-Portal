@@ -53,13 +53,16 @@ if (isset($_POST['subject_id']) && isset($_POST['semester'])) {
     body {
       background-color: #f4f7fc;
       font-family: 'Arial', sans-serif;
+      background: linear-gradient(to left, #f6fcfb, #f9fcff );
     }
 
     .container {
+      max-width: 850px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
       padding: 40px;
-      border-radius: 0px;
-      margin-top: 0px;
+      border-radius: 15px;
+      margin-top: 6rem;
+      background-color: #fff;
     }
 
     h2 {
@@ -133,7 +136,7 @@ if (isset($_POST['subject_id']) && isset($_POST['semester'])) {
   <form method="POST">
     <div class="row">
       <!-- First Column for Semester -->
-      <div class="col-md-6 col-sm-12">
+      <div class="col-md-12 col-sm-12">
         <div class="mb-3">
           <label for="semester" class="form-label">Select Semester</label>
           <select id="semester" name="semester" class="form-select" required>
@@ -147,7 +150,7 @@ if (isset($_POST['subject_id']) && isset($_POST['semester'])) {
 
       <!-- Second Column for Subject -->
       <?php if (!empty($subjects) && $subjects->num_rows > 0): ?>
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-12 col-sm-12">
           <div class="mb-3">
             <label for="subject_id" class="form-label">Select Subject</label>
             <select id="subject_id" name="subject_id" class="form-select" required>
@@ -163,7 +166,7 @@ if (isset($_POST['subject_id']) && isset($_POST['semester'])) {
 
     <div class="row">
       <!-- Full width button for loading reports -->
-      <div class="col-3">
+      <div class="col-6">
         <button type="submit" class="btn btn-primary w-100">Load Grade Reports</button>
       </div>
     </div>

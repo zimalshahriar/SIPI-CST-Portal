@@ -32,10 +32,15 @@ $result = $stmt->get_result();
     <title>Student Grade Report</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            background: linear-gradient(to left, #f6fcfb, #f9fcff );
+        }
+    </style>
 </head>
 <body>
 
-<div class="container mt-5">
+<div class="si mt-5">
     <h3 class="text-center">Grade Report for Semester <?php echo htmlspecialchars($semester); ?></h3>
 
     <?php if ($result->num_rows > 0): ?>

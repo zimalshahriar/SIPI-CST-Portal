@@ -14,6 +14,9 @@ require_once 'partials/sidebar.php';
   <title>Department Curriculum</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
+    body{
+      background: linear-gradient(to left, #f6fcfb, #f9fcff );
+    }
     .subject-card {
       position: relative;
       overflow: hidden;
@@ -22,6 +25,7 @@ require_once 'partials/sidebar.php';
       transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
       width: 100%;
       height: 100%;
+      
     }
 
     .subject-card:hover {
@@ -83,9 +87,9 @@ require_once 'partials/sidebar.php';
   </style>
 </head>
 <body>
-  <div class="content-wrapper">
+  <div>
     <h2 class="text-center">Department Curriculum</h2>
-    <div class="container my-5">
+    <div class=" m-5">
       <div class="row row-cols-1 row-cols-md-3 g-4">
 
         <!-- Card 1 -->

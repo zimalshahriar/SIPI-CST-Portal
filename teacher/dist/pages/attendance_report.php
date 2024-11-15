@@ -44,14 +44,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
           background: #f4f6f9;
           color: #333;
+          background: linear-gradient(to left, #f6fcfb, #f9fcff );
       }
 
       .container {
-          max-width: 900px;
-          margin-top: 5rem;
-          padding: 2rem;
+          max-width: 800px;
+          margin-top: 10rem;
+          padding: 3rem;
           background: #ffffff;
-          border-radius: 5px;
+          border-radius: 15px;
       }
 
       h2 {

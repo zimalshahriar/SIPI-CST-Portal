@@ -68,6 +68,9 @@ $conn->close();
 </div>
 
 <style>
+  body{
+    background: linear-gradient(to left, #f6fcfb, #f9fcff );
+  }
 .dashboard {
   display: flex;
   flex-wrap: wrap;

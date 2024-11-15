@@ -14,6 +14,12 @@ require_once 'partials/sidebar.php';
 
   <link rel="stylesheet" href="../../../assets/bootstrap/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body{
+      background: linear-gradient(to left, #f6fcfb, #f9fcff );
+    }
+  </style>
 </head>
 <body>
 
