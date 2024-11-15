@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_FILES['announcement_pdf']) && $_FILES['announcement_pdf']['error'] == 0) {
             $file_name = $_FILES['announcement_pdf']['name'];
             $file_tmp = $_FILES['announcement_pdf']['tmp_name'];
-            $file_path = '../uploads/' . uniqid() . '-' . $file_name;
+            $file_path = '../../../uploads/' . uniqid() . '-' . $file_name;
             if (move_uploaded_file($file_tmp, $file_path)) {
                 $stmt = $conn->prepare("INSERT INTO announcements (title, file_path, semester, created_at) VALUES (?, ?, ?, NOW())");
                 $stmt->bind_param("sss", $title, $file_path, $semester);
