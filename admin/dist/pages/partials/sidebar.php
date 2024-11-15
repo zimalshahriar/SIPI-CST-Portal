@@ -30,6 +30,12 @@
                     </a>
                     </li>
                     <li class="nav-item">
+                    <a href="manage_sessions.php" class="nav-link">
+                    <i class="nav-icon bi bi-calendar-check"></i>
+                    <p>Manage Sessions</p>
+                    </a>
+                    </li>
+                    <li class="nav-item">
                     <a href="subject_management.php" class="nav-link">
                     <i class="nav-icon bi bi-book"></i>
                     <p>Subject Management</p>
