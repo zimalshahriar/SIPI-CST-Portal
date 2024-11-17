@@ -83,8 +83,8 @@ $conn->close();
         }
 
         .container {
-            max-width: 1500px;
-            padding: 96px;
+            max-width: 1300px;
+            padding: 95px;
             background: linear-gradient(to right, #f6fcfb, #f9fcff );
             border-radius: 2px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);

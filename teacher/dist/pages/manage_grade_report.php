@@ -57,11 +57,11 @@ if (isset($_POST['subject_id']) && isset($_POST['semester'])) {
     }
 
     .container {
-      max-width: 850px;
+      max-width: 900px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
       padding: 40px;
       border-radius: 15px;
-      margin-top: 6rem;
+      margin-top: 2rem;
       background-color: #fff;
     }
 

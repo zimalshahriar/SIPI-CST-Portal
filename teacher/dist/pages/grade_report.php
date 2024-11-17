@@ -48,8 +48,8 @@ if (isset($_POST['subject_id']) && isset($_POST['semester'])) {
         }
 
         .container {
-            max-width: 800px;
-            margin-top: 6rem;
+            max-width: 900px;
+            margin-top: 2rem;
             background-color: #fff;
             border-radius: 15px;
             padding: 30px;
